@@ -1,1 +1,35 @@
-{"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"altaguardia-hub","configurations":{"web":"1:610805260869:web:0e0616b0a06616cc37792c"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "altaguardia-hub",
+          "configurations": {
+            "web": "1:610805260869:web:0e0616b0a06616cc37792c"
+          }
+        }
+      }
+    }
+  },
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}

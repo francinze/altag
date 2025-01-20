@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class WhiteboardPage extends StatefulWidget {
   const WhiteboardPage({super.key});
@@ -16,7 +17,7 @@ class WhiteboardPageState extends State<WhiteboardPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Whiteboard'),
+        title: Text(AppLocalizations.of(context)!.whiteboard_title),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -25,9 +26,9 @@ class WhiteboardPageState extends State<WhiteboardPage> {
             TextField(
               controller: _controller,
               maxLines: null,
-              decoration: const InputDecoration(
-                labelText: 'Write your note here',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.write_your_note,
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 16),

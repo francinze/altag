@@ -1,0 +1,188 @@
+{
+    "@@locale": "it",
+    "@house_instructions_title": {
+      "description": "Title for the home page",
+      "type": "text",
+      "placeholders": {}
+    },
+    "house_instructions_title": "Istruzioni per la casa",
+    "@homepage_welcome": {
+      "description": "Welcome message on the home page",
+      "type": "text",
+      "placeholders": {}
+    },
+    "homepage_welcome": "Benvenuto! Seleziona una categoria per iniziare:",
+
+    "@home_title": {
+      "description": "Title for the home page",
+      "type": "text",
+      "placeholders": {}
+    },
+    "home_title": "Home",
+
+    "@search_title": {
+      "description": "Title for the search page",
+      "type": "text",
+      "placeholders": {}
+    },
+    "search_title": "Cerca",
+
+    "@settings_title": {
+      "description": "Title for the settings page",
+      "type": "text",
+      "placeholders": {}
+    },
+    "settings_title": "Impostazioni",
+
+    "@utilities_title": {
+      "description": "Title for the utilities page",
+      "type": "text",
+      "placeholders": {}
+    },
+    "utilities_title": "Utilità",
+
+    "@appliances_title": {
+      "description": "Title for the appliances section",
+      "type": "text",
+      "placeholders": {}
+    },
+    "appliances_title": "Elettrodomestici",
+    
+    "@recipes_title": {
+      "description": "Title for the recipe section",
+      "type": "text",
+      "placeholders": {}
+    },
+    "recipes_title": "Cucina",
+
+    "@housekeeping_title": {
+      "description": "Title for the housekeeping section",
+      "type": "text",
+      "placeholders": {}
+    },
+    "housekeeping_title": "Lavori di casa",
+
+    "@whiteboard_title": {
+      "description": "Title for the whiteboards section",
+      "type": "text",
+      "placeholders": {}
+    },
+    "whiteboard_title": "Lavagna",
+
+    "@write_your_note": {
+      "description": "Write your note here",
+      "type": "text",
+      "placeholders": {}
+    },
+    "write_your_note": "Scrivi la tua nota qui",
+
+    "@water_shut_off_title": {
+      "description": "Title for the water shut off section",
+      "type": "text",
+      "placeholders": {}
+    },
+    "water_shut_off_title": "Chiusura dell'acqua",
+    "@water_shut_off_subtitle": {
+      "description": "Subtitle for the water shut off section",
+      "type": "text",
+      "placeholders": {}
+    },
+    "water_shut_off_subtitle": "Come spegnere l'acqua",
+    "@water_shut_off_location_title": {
+      "description": "Title for the water shut off valve",
+      "type": "text",
+      "placeholders": {}
+    },
+    "water_shut_off_location_title": "Posizione della valvola",
+    "@water_shut_off_location_subtitle": {
+      "description": "Location of the water shut off valve",
+      "type": "text",
+      "placeholders": {}
+    },
+    "water_shut_off_location_subtitle": "La valvola di chiusura dell'acqua è situata nella cucina.",
+    "@water_shut_off_instructions_title": {
+      "description": "Title for the water shut off instructions",
+      "type": "text",
+      "placeholders": {}
+    },
+    "water_shut_off_instructions_title": "Instruzioni",
+    
+    "@water_shut_off_instructions_subtitle": {
+      "description": "Instructions for shutting off the water supply",
+      "type": "text",
+      "placeholders": {}
+    },
+    "water_shut_off_instructions_subtitle": "Per spegnere l'acqua, ruota la valvola in senso antiorario fino a quando non si ferma. Per riaccendere l'acqua, ruota la valvola in senso orario fino a quando non si ferma.",
+    "@power_outage_title": {
+      "description": "Title for the power outage section",
+      "type": "text",
+      "placeholders": {}
+    },
+    "power_outage_title": "Salto della luce",
+    "@power_outage_subtitle": {
+      "description": "Subtitle for the power outage section",
+      "type": "text",
+      "placeholders": {}
+    },
+    "power_outage_subtitle": "Come fare se salta la luce",
+    "@power_outage_what_to_do_title": {
+      "description": "Title for what to do during a power outage",
+      "type": "text",
+      "placeholders": {}
+    },
+    "power_outage_what_to_do_title": "Cosa fare",
+    "@power_outage_what_to_do_subtitle": {
+      "description": "Instructions for what to do during a power outage",
+      "type": "text",
+      "placeholders": {}
+    },
+    "power_outage_what_to_do_subtitle": "Se salta la luce, controlla il circuito o il box di fusi per vedere se un interruttore è stato scollegato o se un fusibile è scollegato. Se il problema persiste, contatta la compagnia di energia.",
+    "@power_outage_safety_precautions_title": {
+      "description": "Title for safety precautions during a power outage",
+      "type": "text",
+      "placeholders": {}
+    },
+    "power_outage_safety_precautions_title": "Precazioni di sicurezza",
+    "@power_outage_safety_precautions_subtitle": {
+      "description": "Safety precautions for during a power outage",
+      "type": "text",
+      "placeholders": {}
+    },
+    "power_outage_safety_precautions_subtitle": "Evitare di usare candele o fiamme, poiché possono essere un pericolo di incendio. Usare luci da batteria o luci da batteria per evitare di usare candele o fiamme.",
+    "@hvac_title": {
+      "description": "Title for the HVAC section",
+      "type": "text",
+      "placeholders": {}
+    },
+    "hvac_title": "HVAC",
+    "@hvac_subtitle": {
+      "description": "Subtitle for the HVAC section",
+      "type": "text",
+      "placeholders": {}
+    },
+    "hvac_subtitle": "Riscaldamento, ventilazione e aria condizionata",
+    "@hvac_thermostat_location_title": {
+      "description": "Title for the thermostat location",
+      "type": "text",
+      "placeholders": {}
+    },
+    "hvac_thermostat_location_title": "Posizione del termostato",
+    "@hvac_thermostat_location_subtitle": {
+      "description": "Location of the thermostat",
+      "type": "text",
+      "placeholders": {}
+    },
+    "hvac_thermostat_location_subtitle": "Il termostato è situato nella stanza, sulla parete vicino alla finestra.",
+    "@hvac_temperature_settings_title": {
+      "description": "Title for the temperature settings",
+      "type": "text",
+      "placeholders": {}
+    },
+    "hvac_temperature_settings_title": "Impostazioni di temperatura",
+    "@hvac_temperature_settings_subtitle": {
+      "description": "Recommended temperature settings for the HVAC system",
+      "type": "text",
+      "placeholders": {}
+    },
+    "hvac_temperature_settings_subtitle": "Le impostazioni di temperatura raccomandate sono 68°F in inverno e 78°F in estate."
+  }
