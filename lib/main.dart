@@ -1,12 +1,11 @@
 import 'package:altag/firebase_options.dart';
+import 'package:altag/pages/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 import 'generated/l10n.dart';
-import 'pages/home_page.dart';
-import 'pages/search.dart';
-import 'pages/settings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,9 +21,6 @@ class HouseInstructionsApp extends StatefulWidget {
 }
 
 class _HouseInstructionsAppState extends State<HouseInstructionsApp> {
-  Locale selectedLocale = const Locale('en');
-  int selectedIndex = 0;
-
   /// The widget that configures the top-level routing.
   ///
   /// This widget is the configuration for the [MaterialApp] widget and
@@ -37,54 +33,32 @@ class _HouseInstructionsAppState extends State<HouseInstructionsApp> {
   ///
   @override
   Widget build(BuildContext context) {
-    void onPageSelected(int index) => setState(() => selectedIndex = index);
-
-    final List<Widget> pages = [
-      const HomePage(),
-      const SearchPage(),
-      const SettingsPage(),
-    ];
-
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print('User is currently signed out!');
+      } else {
+        print('User is signed in!');
+      }
+    });
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'AltaGuardiaHub',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        textTheme: const TextTheme(
-          headlineMedium:
-              TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        debugShowCheckedModeBanner: false,
+        title: 'AltaGuardiaHub',
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+          textTheme: const TextTheme(
+            headlineMedium:
+                TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+          ),
         ),
-      ),
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      locale: Locale(Intl.getCurrentLocale()),
-      home: Scaffold(
-        appBar: AppBar(title: const Text('AltaGuardiaHub')),
-        body: Row(
-          children: [
-            NavigationRail(
-              selectedIndex: selectedIndex,
-              onDestinationSelected: onPageSelected,
-              labelType: NavigationRailLabelType.all,
-              destinations: const [
-                NavigationRailDestination(
-                    icon: Icon(Icons.home), label: SizedBox()),
-                NavigationRailDestination(
-                    icon: Icon(Icons.search), label: SizedBox()),
-                NavigationRailDestination(
-                    icon: Icon(Icons.settings), label: SizedBox()),
-              ],
-            ),
-            Expanded(child: pages[selectedIndex]),
-          ],
-        ),
-      ),
-    );
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        locale: Locale(Intl.getCurrentLocale()),
+        home: const HomePage());
   }
 }

@@ -4,8 +4,8 @@ import 'package:altag/pages/utilities.dart';
 import 'package:altag/pages/whiteboard.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class DashboardPage extends StatelessWidget {
+  const DashboardPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,10 +1,18 @@
 import 'package:altag/models/recipe.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../models/instruction.dart';
 
 class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+
+  Future<void> addUser(User user) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .set({'email': user.email});
+  }
 
   Stream<List<Instruction>> getInstructions() {
     return _db.collection('instructions').snapshots().map((snapshot) {
