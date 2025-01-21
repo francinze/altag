@@ -14,14 +14,8 @@ class FirestoreService {
     });
   }
 
-  Future<void> addInstruction(Instruction i) async {
-    await _db.collection('instructions').add({
-      'title': i.title,
-      'description': i.description,
-      'category': i.category,
-      'timestamp': FieldValue.serverTimestamp(),
-    });
-  }
+  Future<void> addInstruction(Instruction i) async =>
+      await _db.collection('instructions').add(i.toJson());
 
   Future<void> deleteInstruction(String id) async {
     await _db.collection('instructions').doc(id).delete();
@@ -34,7 +28,7 @@ class FirestoreService {
         .snapshots()
         .map((snapshot) {
       return snapshot.docs.map((doc) {
-        if (category == 'recipes') {
+        if (category == 'recipe') {
           return Recipe.fromFirestore(doc);
         }
         return Instruction.fromFirestore(doc);

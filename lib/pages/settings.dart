@@ -1,23 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({required this.onChangeLocale, super.key});
+import '../generated/l10n.dart';
 
-  final void Function(Locale locale) onChangeLocale;
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
+
+  @override
+  State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
+    final locale = Intl.getCurrentLocale();
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            Text(S.of(context).languageLabel),
             ElevatedButton(
-              onPressed: () => onChangeLocale(const Locale('en')),
-              child: const Text('English'),
-            ),
+                onPressed: () {
+                  S.load(const Locale('en'));
+                  setState(() {});
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: locale == 'en' ? Colors.blue : null),
+                child: const Text('English')),
             ElevatedButton(
-              onPressed: () => onChangeLocale(const Locale('it')),
-              child: const Text('Italiano'),
-            ),
+                onPressed: () {
+                  S.load(const Locale('it'));
+                  setState(() {});
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: locale == 'it' ? Colors.blue : null),
+                child: const Text('Italiano')),
           ],
         ),
       ],

@@ -1,8 +1,8 @@
+import 'package:altag/generated/l10n.dart';
 import 'package:altag/pages/recipes.dart';
 import 'package:altag/pages/utilities.dart';
 import 'package:altag/pages/whiteboard.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            AppLocalizations.of(context)!.house_instructions_title,
+            S.of(context).houseInstructionsTitle,
             style: Theme.of(context).textTheme.titleMedium,
             textAlign: TextAlign.center,
           ),
@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
               children: [
                 _CategoryCard(
                   icon: Icons.plumbing,
-                  label: AppLocalizations.of(context)!.utilities_title,
+                  label: S.of(context).utilitiesTitle,
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -38,14 +38,14 @@ class HomePage extends StatelessWidget {
                 ),
                 _CategoryCard(
                   icon: Icons.kitchen,
-                  label: AppLocalizations.of(context)!.appliances_title,
+                  label: S.of(context).appliancesTitle,
                   onTap: () {
                     // Navigate to Appliances page
                   },
                 ),
                 _CategoryCard(
                   icon: Icons.book,
-                  label: AppLocalizations.of(context)!.recipes_title,
+                  label: S.of(context).recipesTitle,
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -54,14 +54,14 @@ class HomePage extends StatelessWidget {
                 ),
                 _CategoryCard(
                   icon: Icons.cleaning_services,
-                  label: AppLocalizations.of(context)!.housekeeping_title,
+                  label: S.of(context).housekeepingTitle,
                   onTap: () {
                     // Navigate to Housekeeping page
                   },
                 ),
                 _CategoryCard(
                   icon: Icons.notes,
-                  label: AppLocalizations.of(context)!.whiteboard_title,
+                  label: S.of(context).whiteboardTitle,
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(

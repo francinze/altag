@@ -1,8 +1,9 @@
 import 'package:altag/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
+import 'generated/l10n.dart';
 import 'pages/home_page.dart';
 import 'pages/search.dart';
 import 'pages/settings.dart';
@@ -31,23 +32,22 @@ class _HouseInstructionsAppState extends State<HouseInstructionsApp> {
   /// localizations and the home page of the app.
   ///
   /// The [MaterialApp] is configured with a blue color scheme and a
-  /// bold headline font style. The [AppLocalizations.delegate] is used
+  /// bold headline font style. The [S.delegate] is used
   /// to configure the app's localizations.
   ///
   @override
   Widget build(BuildContext context) {
     void onPageSelected(int index) => setState(() => selectedIndex = index);
-    void changeLocale(Locale locale) => setState(() => selectedLocale = locale);
 
     final List<Widget> pages = [
       const HomePage(),
       const SearchPage(),
-      SettingsPage(onChangeLocale: changeLocale),
+      const SettingsPage(),
     ];
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'House Instructions',
+      title: 'AltaGuardiaHub',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
@@ -57,13 +57,13 @@ class _HouseInstructionsAppState extends State<HouseInstructionsApp> {
         ),
       ),
       localizationsDelegates: const [
-        AppLocalizations.delegate,
+        S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [Locale('en'), Locale('it')],
-      locale: selectedLocale,
+      supportedLocales: S.delegate.supportedLocales,
+      locale: Locale(Intl.getCurrentLocale()),
       home: Scaffold(
         appBar: AppBar(title: const Text('AltaGuardiaHub')),
         body: Row(

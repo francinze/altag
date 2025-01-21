@@ -1,3 +1,6 @@
+import 'package:altag/generated/l10n.dart';
+import 'package:altag/models/recipe.dart';
+import 'package:altag/pages/recipe.dart';
 import 'package:altag/sheets/add_instruction_sheet.dart';
 import 'package:flutter/material.dart';
 
@@ -10,9 +13,10 @@ class RecipesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FirestoreService firestoreService = FirestoreService();
+    final s = S.of(context);
     return Scaffold(
       body: StreamBuilder<List<Instruction>>(
-        stream: firestoreService.getInstructionsByCategory('recipes'),
+        stream: firestoreService.getInstructionsByCategory('recipe'),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -21,17 +25,23 @@ class RecipesPage extends StatelessWidget {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No instructions found.'));
+            return Center(child: Text(s.noRecipesMsg));
           }
           final instructions = snapshot.data!;
           return ListView.builder(
             itemCount: instructions.length,
             itemBuilder: (context, index) {
-              final instruction = instructions[index];
+              final instruction = instructions[index] as Recipe;
               return ListTile(
-                title: Text(instruction.title),
-                subtitle: Text(instruction.description),
-              );
+                  title: Text(instruction.title),
+                  subtitle: Text(instruction.description),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RecipePage(
+                          recipe: instruction,
+                        ),
+                      )));
             },
           );
         },
@@ -41,7 +51,7 @@ class RecipesPage extends StatelessWidget {
           final instruction = await showDialog(
               context: context,
               builder: (context) =>
-                  const AddInstructionSheet(category: 'recipes'));
+                  const AddInstructionSheet(category: 'recipe'));
           if (instruction != null) {
             await firestoreService.addInstruction(instruction);
           }

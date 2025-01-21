@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../generated/l10n.dart';
 
 class WhiteboardPage extends StatefulWidget {
   const WhiteboardPage({super.key});
@@ -15,10 +16,9 @@ class WhiteboardPageState extends State<WhiteboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.whiteboard_title),
-      ),
+      appBar: AppBar(title: Text(s.whiteboardTitle)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -27,7 +27,7 @@ class WhiteboardPageState extends State<WhiteboardPage> {
               controller: _controller,
               maxLines: null,
               decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.write_your_note,
+                labelText: s.writeYourNote,
                 border: const OutlineInputBorder(),
               ),
             ),
@@ -39,11 +39,11 @@ class WhiteboardPageState extends State<WhiteboardPage> {
                   await _dbRef.push().set({'note': note});
                   _controller.clear();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Note saved!')),
+                    SnackBar(content: Text(s.noteSavedMsg)),
                   );
                 }
               },
-              child: const Text('Save Note'),
+              child: Text(s.saveNote),
             ),
             const SizedBox(height: 16),
             Expanded(
@@ -55,7 +55,7 @@ class WhiteboardPageState extends State<WhiteboardPage> {
                   }
                   if (!snapshot.hasData ||
                       snapshot.data?.snapshot.value == null) {
-                    return const Center(child: Text('No notes yet!'));
+                    return Center(child: Text(s.noNotesMsg));
                   }
                   final Map<dynamic, dynamic> notes =
                       (snapshot.data!.snapshot.value as Map<dynamic, dynamic>);
