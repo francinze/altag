@@ -21,20 +21,14 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             Text(S.of(context).languageLabel),
             ElevatedButton(
-                onPressed: () {
-                  S.load(const Locale('en'));
-                  setState(() {});
-                },
+                onPressed: () => setState(() => S.load(const Locale('en'))),
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: locale == 'en' ? Colors.blue : null),
+                    backgroundColor: locale == 'en' ? Colors.orange : null),
                 child: const Text('English')),
             ElevatedButton(
-                onPressed: () {
-                  S.load(const Locale('it'));
-                  setState(() {});
-                },
+                onPressed: () => setState(() => S.load(const Locale('it'))),
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: locale == 'it' ? Colors.blue : null),
+                    backgroundColor: locale == 'it' ? Colors.orange : null),
                 child: const Text('Italiano')),
           ],
         ),

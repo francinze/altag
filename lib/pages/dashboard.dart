@@ -2,13 +2,17 @@ import 'package:altag/generated/l10n.dart';
 import 'package:altag/pages/recipes.dart';
 import 'package:altag/pages/utilities.dart';
 import 'package:altag/pages/whiteboard.dart';
+import 'package:altag/providers/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<HouseAuthProvider>(context);
+    final user = authProvider.user;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -59,15 +63,16 @@ class DashboardPage extends StatelessWidget {
                     // Navigate to Housekeeping page
                   },
                 ),
-                _CategoryCard(
-                  icon: Icons.notes,
-                  label: S.of(context).whiteboardTitle,
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const WhiteboardPage()),
+                if (user != null)
+                  _CategoryCard(
+                    icon: Icons.notes,
+                    label: S.of(context).whiteboardTitle,
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const WhiteboardPage()),
+                    ),
                   ),
-                ),
               ],
             ),
           ),

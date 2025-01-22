@@ -6,20 +6,24 @@ import '../models/instruction.dart';
 import 'add_ingredient_sheet.dart';
 
 class AddInstructionSheet extends StatefulWidget {
-  const AddInstructionSheet({required this.category, super.key});
+  const AddInstructionSheet(
+      {required this.instruction, this.ingredients, super.key});
 
-  final String category;
+  final Instruction instruction;
+  final Map<TextEditingController, List<Ingredient>>? ingredients;
 
   @override
   State<AddInstructionSheet> createState() => _AddInstructionSheetState();
 }
 
 class _AddInstructionSheetState extends State<AddInstructionSheet> {
-  final titleController = TextEditingController();
-  final descriptionController = TextEditingController();
-  final ingredients = <String, List<Ingredient>>{};
   @override
   Widget build(BuildContext context) {
+    final titleController =
+        TextEditingController(text: widget.instruction.title);
+    final descriptionController =
+        TextEditingController(text: widget.instruction.description);
+    final ingredients = widget.ingredients ?? {};
     final s = S.of(context);
     return Card(
       margin: const EdgeInsets.all(16.0),
@@ -29,7 +33,10 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(widget.category == 'recipe' ? s.addRecipe : s.addInstruction,
+            Text(
+                widget.instruction.category == 'recipe'
+                    ? s.addRecipe
+                    : s.addInstruction,
                 style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 8.0),
             TextField(
@@ -49,57 +56,64 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
                   scrollDirection: Axis.horizontal,
                   padding: const EdgeInsets.all(10),
                   children: [
-                    ...ingredients.entries.map(
-                      (ingredientList) => SizedBox(
-                        width: 150,
-                        child: ListView(
-                          children: [
-                            ElevatedButton(
-                                onPressed: () async {
-                                  final ingr = await showModalBottomSheet(
-                                      context: context,
-                                      builder: (context) =>
-                                          const AddIngredientSheet());
-                                  if (ingr != null) {
-                                    final List<Ingredient> newIngrList = [
-                                      ...ingredientList.value,
-                                      ingr
-                                    ];
-                                    setState(() =>
-                                        ingredients[ingredientList.key] =
-                                            newIngrList);
-                                  }
-                                },
-                                child: SizedBox(
-                                    height: 30, child: Text(s.addIngredient))),
-                            ...ingredientList.value.map((e) => ElevatedButton(
-                                onPressed: () {}, child: Text(e.name))),
-                          ],
-                        ),
-                      ),
-                    ),
+                    ...ingredients.map(
+                      (controller, ingredientList) {
+                        return MapEntry(
+                            controller,
+                            SizedBox(
+                              width: 150,
+                              child: ListView(
+                                children: [
+                                  TextField(controller: controller),
+                                  ElevatedButton(
+                                      onPressed: () async {
+                                        final ingr = await showModalBottomSheet(
+                                            context: context,
+                                            builder: (context) =>
+                                                const AddIngredientSheet());
+                                        if (ingr != null) {
+                                          final List<Ingredient> newIngrList = [
+                                            ...ingredientList,
+                                            ingr
+                                          ];
+                                          setState(() =>
+                                              ingredients[controller] =
+                                                  newIngrList);
+                                        }
+                                      },
+                                      child: SizedBox(
+                                          height: 30,
+                                          child: Text(s.addIngredient))),
+                                  ...ingredientList.map((e) => Text(e.name)),
+                                ],
+                              ),
+                            ));
+                      },
+                    ).values,
                     ElevatedButton(
-                        onPressed: () => setState(() =>
-                            ingredients[(ingredients.length + 1).toString()] =
-                                []),
+                        onPressed: () => setState(
+                            () => ingredients[TextEditingController()] = []),
                         child:
                             SizedBox(height: 30, child: Text(s.addIngredient))),
                   ]),
             ),
             ElevatedButton(
-              onPressed: () => Navigator.pop(
-                  context,
-                  widget.category == 'recipe'
-                      ? Recipe(
-                          title: titleController.text,
-                          description: descriptionController.text,
-                          ingredients: ingredients,
-                        )
-                      : Instruction(
-                          title: titleController.text,
-                          description: descriptionController.text,
-                          category: widget.category,
-                        )),
+              onPressed: () => Navigator.pop(context, (
+                widget.instruction.category == 'recipe'
+                    ? Recipe(
+                        title: titleController.text,
+                        description: descriptionController.text,
+                      )
+                    : Instruction(
+                        title: titleController.text,
+                        description: descriptionController.text,
+                        category: widget.instruction.category,
+                      ),
+                Map.fromEntries(
+                  ingredients.entries
+                      .map((entry) => MapEntry(entry.key.text, entry.value)),
+                )
+              )),
               child: Text(s.saveInstruction),
             ),
           ],

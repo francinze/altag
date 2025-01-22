@@ -15,7 +15,7 @@ class RecipesPage extends StatelessWidget {
     final FirestoreService firestoreService = FirestoreService();
     final s = S.of(context);
     return Scaffold(
-      body: StreamBuilder<List<Instruction>>(
+      body: StreamBuilder<Map<String, Instruction>>(
         stream: firestoreService.getInstructionsByCategory('recipe'),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -31,15 +31,19 @@ class RecipesPage extends StatelessWidget {
           return ListView.builder(
             itemCount: instructions.length,
             itemBuilder: (context, index) {
-              final instruction = instructions[index] as Recipe;
+              final recipe = instructions.entries.elementAt(index);
               return ListTile(
-                  title: Text(instruction.title),
-                  subtitle: Text(instruction.description),
+                  title: Text(recipe.value.title),
+                  subtitle: Text(recipe.value.description),
+                  trailing: recipe.value.imageUrl != null
+                      ? Image.asset(recipe.value.imageUrl!)
+                      : null,
                   onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => RecipePage(
-                          recipe: instruction,
+                          id: recipe.key,
+                          recipe: recipe.value as Recipe,
                         ),
                       )));
             },
@@ -48,12 +52,13 @@ class RecipesPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final instruction = await showDialog(
+          final (instruction, ingredients) = await showDialog(
               context: context,
-              builder: (context) =>
-                  const AddInstructionSheet(category: 'recipe'));
+              builder: (context) => AddInstructionSheet(
+                  instruction: Instruction(
+                      category: 'recipe', title: '', description: '')));
           if (instruction != null) {
-            await firestoreService.addInstruction(instruction);
+            await firestoreService.addInstruction(instruction, ingredients);
           }
         },
         child: const Icon(Icons.add),

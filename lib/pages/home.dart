@@ -4,6 +4,7 @@ import 'package:altag/pages/settings.dart';
 import 'package:altag/pages/unauth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,11 +28,9 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     // Listen for auth state changes
-    FirebaseAuth.instance.authStateChanges().listen((user) {
-      setState(() {
-        _user = user;
-      });
-    });
+    FirebaseAuth.instance
+        .authStateChanges()
+        .listen((user) => setState(() => _user = user));
   }
 
   @override
@@ -72,3 +71,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+final userProvider =
+    Provider<User?>(create: (context) => FirebaseAuth.instance.currentUser);

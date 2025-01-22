@@ -1,16 +1,22 @@
 import 'package:altag/firebase_options.dart';
 import 'package:altag/pages/home.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:altag/providers/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'generated/l10n.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const HouseInstructionsApp());
+  runApp(
+    ChangeNotifierProvider<HouseAuthProvider?>(
+      create: (context) => HouseAuthProvider(),
+      child: const HouseInstructionsApp(),
+    ),
+  );
 }
 
 class HouseInstructionsApp extends StatefulWidget {
@@ -32,33 +38,24 @@ class _HouseInstructionsAppState extends State<HouseInstructionsApp> {
   /// to configure the app's localizations.
   ///
   @override
-  Widget build(BuildContext context) {
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('User is currently signed out!');
-      } else {
-        print('User is signed in!');
-      }
-    });
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'AltaGuardiaHub',
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-          textTheme: const TextTheme(
-            headlineMedium:
-                TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-          ),
+  Widget build(BuildContext context) => MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'AltaGuardiaHub',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        textTheme: const TextTheme(
+          headlineMedium:
+              TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        locale: Locale(Intl.getCurrentLocale()),
-        home: const HomePage());
-  }
+      ),
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
+      locale: Locale(Intl.getCurrentLocale()),
+      home: const HomePage());
 }

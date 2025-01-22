@@ -18,6 +18,7 @@ dependencies:
   url_launcher: ^6.3.1
   webauthn: ^0.2.5
   firebase_auth: ^5.4.1
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:

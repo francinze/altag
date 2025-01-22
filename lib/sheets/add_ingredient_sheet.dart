@@ -4,14 +4,19 @@ import 'package:flutter/material.dart';
 import '../generated/l10n.dart';
 
 class AddIngredientSheet extends StatelessWidget {
-  const AddIngredientSheet({super.key});
+  const AddIngredientSheet({super.key, this.ingredient});
+
+  final Ingredient? ingredient;
 
   @override
   Widget build(BuildContext context) {
-    final titleController = TextEditingController();
-    final descriptionController = TextEditingController();
-    final imageController = TextEditingController();
-    final urlController = TextEditingController();
+    final titleController = TextEditingController(text: ingredient?.name ?? '');
+    final descriptionController =
+        TextEditingController(text: ingredient?.description ?? '');
+    final imageController =
+        TextEditingController(text: ingredient?.imageUrl ?? '');
+    final urlController =
+        TextEditingController(text: ingredient?.productUrl ?? '');
     final s = S.of(context);
     return Container(
       padding: const EdgeInsets.all(16.0),
@@ -27,6 +32,7 @@ class AddIngredientSheet extends StatelessWidget {
           const SizedBox(height: 8.0),
           TextField(
             controller: descriptionController,
+            maxLines: null,
             decoration: InputDecoration(labelText: s.ingrDescriptionLabel),
           ),
           const SizedBox(height: 8.0),
