@@ -1,5 +1,7 @@
+import 'package:altag/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../generated/l10n.dart';
 
@@ -14,6 +16,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     final locale = Intl.getCurrentLocale();
+    final authProvider = Provider.of<HouseAuthProvider>(context);
     return Column(
       children: [
         Row(
@@ -32,6 +35,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: const Text('Italiano')),
           ],
         ),
+        const Divider(),
+        if (authProvider.user != null)
+          ElevatedButton(
+              onPressed: () => HouseAuthProvider().logout(),
+              child: const Text('Log Out')),
       ],
     );
   }

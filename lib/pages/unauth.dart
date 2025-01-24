@@ -4,21 +4,10 @@ import 'package:flutter/material.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 
-Future<void> signUpResident(String email, String password) async {
-  final credential = await auth.createUserWithEmailAndPassword(
-    email: email,
-    password: password,
-  );
-
-  await FirestoreService().addUser(credential.user!);
-}
-
-Future<void> loginUser(String email, String password) async {
+Future<void> loginUser(String userName) async {
   try {
-    FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    await FirestoreService.checkUser(userName);
+    FirebaseAuth.instance.signInAnonymously();
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {
       print('No user found for that email.');
@@ -33,8 +22,7 @@ class UnauthenticatedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
+    final userNameController = TextEditingController();
     return Scaffold(
       body: Center(
         child: Column(
@@ -42,20 +30,17 @@ class UnauthenticatedPage extends StatelessWidget {
           children: [
             const Text("Log in"),
             const SizedBox(height: 16),
-            TextField(
-              controller: emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
-            ),
-            const SizedBox(height: 8),
-            TextField(
-              controller: passwordController,
-              decoration: const InputDecoration(labelText: 'Password'),
-              // obscureText: true,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: userNameController,
+                decoration: const InputDecoration(labelText: 'Username'),
+              ),
             ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () async {
-                await loginUser(emailController.text, passwordController.text);
+                await loginUser(userNameController.text);
                 Navigator.pop(context);
               },
               child: const Text('Login'),

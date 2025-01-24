@@ -12,11 +12,10 @@ class RecipesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final FirestoreService firestoreService = FirestoreService();
     final s = S.of(context);
     return Scaffold(
       body: StreamBuilder<Map<String, Instruction>>(
-        stream: firestoreService.getInstructionsByCategory('recipe'),
+        stream: FirestoreService.getInstructionsByCategory('recipe'),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -58,7 +57,7 @@ class RecipesPage extends StatelessWidget {
                   instruction: Instruction(
                       category: 'recipe', title: '', description: '')));
           if (instruction != null) {
-            await firestoreService.addInstruction(instruction, ingredients);
+            await FirestoreService.addInstruction(instruction, ingredients);
           }
         },
         child: const Icon(Icons.add),

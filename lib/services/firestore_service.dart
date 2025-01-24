@@ -5,25 +5,36 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../models/instruction.dart';
 
 class FirestoreService {
-  final FirebaseFirestore _db = FirebaseFirestore.instance;
-
-  Future<void> addUser(User user) async {
+  static Future<void> addUser(User user) async {
     await FirebaseFirestore.instance
         .collection('users')
         .doc(user.uid)
-        .set({'email': user.email});
+        .set({'name': user.displayName});
   }
 
-  Stream<List<Instruction>> getInstructions() =>
-      _db.collection('instructions').snapshots().map((snapshot) =>
+  static Future<void> checkUser(String userName) async {
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .where('name', isEqualTo: userName)
+        .get();
+    assert(doc.docs.isNotEmpty);
+  }
+
+  static Stream<List<Instruction>> getInstructions() => FirebaseFirestore
+      .instance
+      .collection('instructions')
+      .snapshots()
+      .map((snapshot) =>
           snapshot.docs.map((doc) => Instruction.fromFirestore(doc)).toList());
 
-  Future<void> addInstruction(
+  static Future<void> addInstruction(
       Instruction i, Map<String, List<Ingredient>>? ingredients) async {
-    final doc = await _db.collection('instructions').add(i.toJson());
+    final doc = await FirebaseFirestore.instance
+        .collection('instructions')
+        .add(i.toJson());
     if (i.category == 'recipe' && ingredients != null) {
       for (final ingredientOptions in ingredients.entries) {
-        await _db
+        await FirebaseFirestore.instance
             .collection('instructions')
             .doc(doc.id)
             .collection('ingredients')
@@ -37,11 +48,15 @@ class FirestoreService {
     }
   }
 
-  Future<void> deleteInstruction(String id) async =>
-      await _db.collection('instructions').doc(id).delete();
+  static Future<void> deleteInstruction(String id) async =>
+      await FirebaseFirestore.instance
+          .collection('instructions')
+          .doc(id)
+          .delete();
 
-  Stream<Map<String, Instruction>> getInstructionsByCategory(String category) =>
-      _db
+  static Stream<Map<String, Instruction>> getInstructionsByCategory(
+          String category) =>
+      FirebaseFirestore.instance
           .collection('instructions')
           .where('category', isEqualTo: category)
           .snapshots()
@@ -54,9 +69,9 @@ class FirestoreService {
         }));
       });
 
-  Stream<Map<String, List<Ingredient>>> getIngredientsByRecipe(
+  static Stream<Map<String, List<Ingredient>>> getIngredientsByRecipe(
           String recipeId) =>
-      _db
+      FirebaseFirestore.instance
           .collection('instructions')
           .doc(recipeId)
           .collection('ingredients')
@@ -72,32 +87,50 @@ class FirestoreService {
         }));
       });
 
-  Future<void> updateInstruction(
-          String id, String title, String description) async =>
-      await _db.collection('instructions').doc(id).update({
-        'title': title,
-        'description': description,
-      });
+  static Future<void> updateInstruction(Instruction i, String id,
+      Map<String, List<Ingredient>>? ingredients) async {
+    await FirebaseFirestore.instance
+        .collection('instructions')
+        .doc(id)
+        .update(i.toJson());
+    if (i.category == 'recipe' && ingredients != null) {
+      for (final ingredientOptions in ingredients.entries) {
+        await updateIngredient(
+            id, ingredientOptions.key, ingredientOptions.value);
+      }
+    }
+  }
 
-  Stream<List<Instruction>> searchInstructions(String query) => _db
-      .collection('instructions')
-      .where('title', isGreaterThanOrEqualTo: query)
-      .snapshots()
-      .map((snapshot) =>
-          snapshot.docs.map((doc) => Instruction.fromFirestore(doc)).toList());
+  static Stream<List<Instruction>> searchInstructions(String query) =>
+      FirebaseFirestore.instance
+          .collection('instructions')
+          .where('title', isGreaterThanOrEqualTo: query)
+          .snapshots()
+          .map((snapshot) => snapshot.docs
+              .map((doc) => Instruction.fromFirestore(doc))
+              .toList());
 
-  Future<void> updateIngredient(
-          String id, String listName, List<Ingredient> newOptionsList) async =>
-      await _db
+  static Future<void> updateIngredient(
+      String id, String listName, List<Ingredient> newOptionsList) async {
+    final list = await FirebaseFirestore.instance
+        .collection('instructions')
+        .doc(id)
+        .collection('ingredients')
+        .where('name', isEqualTo: listName)
+        .get();
+    if (list.docs.isEmpty) {
+      await FirebaseFirestore.instance
           .collection('instructions')
           .doc(id)
           .collection('ingredients')
-          .where('name', isEqualTo: listName)
-          .get()
-          .then((value) {
-        final doc = value.docs.first;
-        doc.reference.update({
-          'options': newOptionsList.map((i) => i.toJson()).toList(),
-        });
+          .add({
+        'name': listName,
+        'options': newOptionsList.map((i) => i.toJson()).toList(),
       });
+    } else {
+      list.docs.first.reference.update({
+        'options': newOptionsList.map((i) => i.toJson()).toList(),
+      });
+    }
+  }
 }

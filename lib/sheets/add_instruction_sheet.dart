@@ -10,20 +10,32 @@ class AddInstructionSheet extends StatefulWidget {
       {required this.instruction, this.ingredients, super.key});
 
   final Instruction instruction;
-  final Map<TextEditingController, List<Ingredient>>? ingredients;
+  final Map<String, List<Ingredient>>? ingredients;
 
   @override
   State<AddInstructionSheet> createState() => _AddInstructionSheetState();
 }
 
 class _AddInstructionSheetState extends State<AddInstructionSheet> {
+  Map<TextEditingController, List<Ingredient>> ingredients = {};
+  @override
+  void initState() {
+    super.initState();
+    if (widget.ingredients == null) {
+      ingredients = {};
+    } else {
+      ingredients = widget.ingredients!.map(
+          (key, value) => MapEntry(TextEditingController(text: key), value));
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     final titleController =
         TextEditingController(text: widget.instruction.title);
     final descriptionController =
         TextEditingController(text: widget.instruction.description);
-    final ingredients = widget.ingredients ?? {};
     final s = S.of(context);
     return Card(
       margin: const EdgeInsets.all(16.0),
@@ -54,38 +66,39 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
               height: 150,
               child: ListView(
                   scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(4),
                   children: [
                     ...ingredients.map(
                       (controller, ingredientList) {
                         return MapEntry(
                             controller,
-                            SizedBox(
-                              width: 150,
-                              child: ListView(
-                                children: [
-                                  TextField(controller: controller),
-                                  ElevatedButton(
-                                      onPressed: () async {
-                                        final ingr = await showModalBottomSheet(
-                                            context: context,
-                                            builder: (context) =>
-                                                const AddIngredientSheet());
-                                        if (ingr != null) {
-                                          final List<Ingredient> newIngrList = [
-                                            ...ingredientList,
-                                            ingr
-                                          ];
-                                          setState(() =>
-                                              ingredients[controller] =
-                                                  newIngrList);
-                                        }
-                                      },
-                                      child: SizedBox(
-                                          height: 30,
-                                          child: Text(s.addIngredient))),
-                                  ...ingredientList.map((e) => Text(e.name)),
-                                ],
+                            Padding(
+                              padding: const EdgeInsets.all(3),
+                              child: SizedBox(
+                                width: 150,
+                                child: ListView(
+                                  children: [
+                                    TextField(controller: controller),
+                                    ElevatedButton(
+                                        onPressed: () async {
+                                          final ingr = await showModalBottomSheet(
+                                              context: context,
+                                              builder: (context) =>
+                                                  const AddIngredientSheet());
+                                          if (ingr != null) {
+                                            final List<Ingredient> newIngrList =
+                                                [...ingredientList, ingr];
+                                            setState(() =>
+                                                ingredients[controller] =
+                                                    newIngrList);
+                                          }
+                                        },
+                                        child: SizedBox(
+                                            height: 30,
+                                            child: Text(s.addIngredient))),
+                                    ...ingredientList.map((e) => Text(e.name)),
+                                  ],
+                                ),
                               ),
                             ));
                       },
