@@ -23,8 +23,8 @@ class HouseAuthProvider extends ChangeNotifier {
   Future<void> logout() async {
     try {
       await _auth.signOut();
-    } catch (e) {
-      print("Logout failed: $e");
+    } catch (_) {
+      rethrow;
     }
   }
 }

@@ -18,17 +18,20 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
   static const AppLocalizationDelegate delegate = AppLocalizationDelegate();
 
   static Future<S> load(Locale locale) {
-    final name = (locale.countryCode?.isEmpty ?? false)
-        ? locale.languageCode
-        : locale.toString();
+    final name =
+        (locale.countryCode?.isEmpty ?? false)
+            ? locale.languageCode
+            : locale.toString();
     final localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
@@ -41,8 +44,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -72,29 +77,39 @@ class S {
 
   /// `Home`
   String get homeTitle {
-    return Intl.message(
-      'Home',
-      name: 'homeTitle',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Home', name: 'homeTitle', desc: '', args: []);
   }
 
   /// `Search`
   String get searchTitle {
+    return Intl.message('Search', name: 'searchTitle', desc: '', args: []);
+  }
+
+  /// `Settings`
+  String get settingsTitle {
+    return Intl.message('Settings', name: 'settingsTitle', desc: '', args: []);
+  }
+
+  /// `Logout`
+  String get logoutLabel {
+    return Intl.message('Logout', name: 'logoutLabel', desc: '', args: []);
+  }
+
+  /// `No user found for this username.`
+  String get authUserNotFound {
     return Intl.message(
-      'Search',
-      name: 'searchTitle',
+      'No user found for this username.',
+      name: 'authUserNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Settings`
-  String get settingsTitle {
+  /// `Failed to logout: `
+  String get authLogoutFailed {
     return Intl.message(
-      'Settings',
-      name: 'settingsTitle',
+      'Failed to logout: ',
+      name: 'authLogoutFailed',
       desc: '',
       args: [],
     );
@@ -122,12 +137,7 @@ class S {
 
   /// `Recipes`
   String get recipesTitle {
-    return Intl.message(
-      'Recipes',
-      name: 'recipesTitle',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Recipes', name: 'recipesTitle', desc: '', args: []);
   }
 
   /// `Housekeeping`
@@ -182,9 +192,24 @@ class S {
 
   /// `Add Recipe`
   String get addRecipe {
+    return Intl.message('Add Recipe', name: 'addRecipe', desc: '', args: []);
+  }
+
+  /// `Instruction Title`
+  String get instructionTitleLabel {
     return Intl.message(
-      'Add Recipe',
-      name: 'addRecipe',
+      'Instruction Title',
+      name: 'instructionTitleLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instruction Description`
+  String get instructionDescriptionLabel {
+    return Intl.message(
+      'Instruction Description',
+      name: 'instructionDescriptionLabel',
       desc: '',
       args: [],
     );
@@ -242,12 +267,7 @@ class S {
 
   /// `Save`
   String get saveInstruction {
-    return Intl.message(
-      'Save',
-      name: 'saveInstruction',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Save', name: 'saveInstruction', desc: '', args: []);
   }
 
   /// `Write your note here`
@@ -262,12 +282,7 @@ class S {
 
   /// `Save Note`
   String get saveNote {
-    return Intl.message(
-      'Save Note',
-      name: 'saveNote',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Save Note', name: 'saveNote', desc: '', args: []);
   }
 
   /// `Note saved!`
@@ -282,12 +297,7 @@ class S {
 
   /// `No notes yet`
   String get noNotesMsg {
-    return Intl.message(
-      'No notes yet',
-      name: 'noNotesMsg',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('No notes yet', name: 'noNotesMsg', desc: '', args: []);
   }
 
   /// `Water Shut Off`
@@ -412,12 +422,7 @@ class S {
 
   /// `HVAC`
   String get hvacTitle {
-    return Intl.message(
-      'HVAC',
-      name: 'hvacTitle',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('HVAC', name: 'hvacTitle', desc: '', args: []);
   }
 
   /// `Heating, ventilation, and air conditioning`

@@ -53,13 +53,14 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
             const SizedBox(height: 8.0),
             TextField(
               controller: titleController,
-              decoration: const InputDecoration(labelText: 'Title'),
+              decoration: InputDecoration(labelText: s.instructionTitleLabel),
             ),
             const SizedBox(height: 8.0),
             TextField(
               maxLines: null,
               controller: descriptionController,
-              decoration: const InputDecoration(labelText: 'Description'),
+              decoration:
+                  InputDecoration(labelText: s.instructionDescriptionLabel),
             ),
             const SizedBox(height: 8.0),
             SizedBox(

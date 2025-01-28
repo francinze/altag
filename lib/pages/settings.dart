@@ -38,8 +38,14 @@ class _SettingsPageState extends State<SettingsPage> {
         const Divider(),
         if (authProvider.user != null)
           ElevatedButton(
-              onPressed: () => HouseAuthProvider().logout(),
-              child: const Text('Log Out')),
+              onPressed: () {
+                try {
+                  HouseAuthProvider().logout();
+                } catch (e) {
+                  print(S.of(context).authLogoutFailed + e.toString());
+                }
+              },
+              child: Text(S.of(context).logoutLabel)),
       ],
     );
   }

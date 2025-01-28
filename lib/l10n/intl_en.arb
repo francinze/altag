@@ -4,7 +4,13 @@
     "homepageWelcome": "Welcome! Select a category to get started:",
     "homeTitle": "Home",
     "searchTitle": "Search",
+
     "settingsTitle": "Settings",
+    "logoutLabel": "Logout",
+
+    "authUserNotFound": "No user found for this username.",
+    "authLogoutFailed": "Failed to logout: ",
+
     "utilitiesTitle": "Utilities",
     "appliancesTitle": "Appliances",
     "recipesTitle": "Recipes",
@@ -17,6 +23,8 @@
 
     "addInstruction": "Add Instruction",
     "addRecipe": "Add Recipe",
+    "instructionTitleLabel": "Instruction Title",
+    "instructionDescriptionLabel": "Instruction Description",
     "addIngredient": "Add Ingredient",
     "ingrTitleLabel": "Ingredient Title",
     "ingrDescriptionLabel": "Ingredient Description",

@@ -2,18 +2,16 @@ import 'package:altag/services/firestore_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../generated/l10n.dart';
+
 final FirebaseAuth auth = FirebaseAuth.instance;
 
 Future<void> loginUser(String userName) async {
   try {
     await FirestoreService.checkUser(userName);
     FirebaseAuth.instance.signInAnonymously();
-  } on FirebaseAuthException catch (e) {
-    if (e.code == 'user-not-found') {
-      print('No user found for that email.');
-    } else if (e.code == 'wrong-password') {
-      print('Wrong password provided for that user.');
-    }
+  } on FirebaseAuthException catch (_) {
+    rethrow;
   }
 }
 
@@ -40,6 +38,13 @@ class UnauthenticatedPage extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () async {
+                try {
+                  await loginUser(userNameController.text);
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'user-not-found') {
+                    print(S.of(context).authUserNotFound);
+                  }
+                }
                 await loginUser(userNameController.text);
                 Navigator.pop(context);
               },

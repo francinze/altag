@@ -4,7 +4,13 @@
     "homepageWelcome": "Benvenuto! Seleziona una categoria per iniziare:",
     "homeTitle": "Home",
     "searchTitle": "Cerca",
+
     "settingsTitle": "Impostazioni",
+    "logoutLabel": "Logout",
+
+    "authUserNotFound": "Nessun utente trovato per questo nome utente.",
+    "authLogoutFailed": "Impossibile effettuare il logout: ",
+
     "utilitiesTitle": "Utilità",
     "appliancesTitle": "Elettrodomestici",
     "recipesTitle": "Cucina",
@@ -17,6 +23,8 @@
 
     "addInstruction": "Aggiungi istruzione",
     "addRecipe": "Aggiungi ricetta",
+    "instructionTitleLabel": "Titolo istruzione",
+    "instructionDescriptionLabel": "Descrizione istruzione",
     "addIngredient": "Aggiungi ingrediente",
     "ingrTitleLabel": "Titolo ingrediente",
     "ingrDescriptionLabel": "Descrizione ingrediente",
