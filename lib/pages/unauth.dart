@@ -1,14 +1,15 @@
-import 'package:altag/services/firestore_service.dart';
+import 'package:altag/providers/firestore_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../generated/l10n.dart';
 
 final FirebaseAuth auth = FirebaseAuth.instance;
 
-Future<void> loginUser(String userName) async {
+Future<void> loginUser(String userName, FirestoreService firestore) async {
   try {
-    await FirestoreService.checkUser(userName);
+    await firestore.checkUser(userName);
     FirebaseAuth.instance.signInAnonymously();
   } on FirebaseAuthException catch (_) {
     rethrow;
@@ -21,6 +22,7 @@ class UnauthenticatedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userNameController = TextEditingController();
+    final firestore = Provider.of<FirestoreService>(context);
     return Scaffold(
       body: Center(
         child: Column(
@@ -39,13 +41,13 @@ class UnauthenticatedPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 try {
-                  await loginUser(userNameController.text);
+                  await loginUser(userNameController.text, firestore);
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'user-not-found') {
                     print(S.of(context).authUserNotFound);
                   }
                 }
-                await loginUser(userNameController.text);
+                await loginUser(userNameController.text, firestore);
                 Navigator.pop(context);
               },
               child: const Text('Login'),

@@ -1,4 +1,4 @@
-import 'package:altag/services/firestore_service.dart';
+import 'package:altag/providers/firestore_service.dart';
 import 'package:altag/widgets/ingredient_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,8 +19,9 @@ class _RecipePageState extends State<RecipePage> {
   Widget build(BuildContext context) {
     final args =
         ModalRoute.of(context)!.settings.arguments as RecipePageArguments;
+    final firestore = Provider.of<FirestoreService>(context);
     return StreamBuilder<Map<String, List<Ingredient>>>(
-        stream: FirestoreService.getIngredientsByRecipe(args.id),
+        stream: firestore.getIngredientsByRecipe(args.id),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -45,7 +46,7 @@ class _RecipePageState extends State<RecipePage> {
                                   ingredients: ingredients,
                                 ));
                         if (recipe != null) {
-                          FirestoreService.updateInstruction(
+                          firestore.updateInstruction(
                               recipe, args.id, ingrList);
                           Navigator.pop(context);
                         }
@@ -79,7 +80,7 @@ class _RecipePageState extends State<RecipePage> {
                                           updateIngredient: (newI) {
                                             final newList = entry.value;
                                             newList[i.key] = newI;
-                                            FirestoreService.updateIngredient(
+                                            firestore.updateIngredient(
                                                 args.id, entry.key, newList);
                                           },
                                         ))

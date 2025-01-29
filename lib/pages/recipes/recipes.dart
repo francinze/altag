@@ -3,9 +3,10 @@ import 'package:altag/models/recipe.dart';
 import 'package:altag/pages/recipes/recipe.dart';
 import 'package:altag/sheets/add_instruction_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/instruction.dart';
-import '../../services/firestore_service.dart';
+import '../../providers/firestore_service.dart';
 
 class RecipesPage extends StatelessWidget {
   const RecipesPage({super.key});
@@ -13,10 +14,11 @@ class RecipesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final s = S.of(context);
+    final firestore = Provider.of<FirestoreService>(context);
     return Scaffold(
       appBar: AppBar(title: Text(s.recipesTitle)),
       body: StreamBuilder<Map<String, Instruction>>(
-        stream: FirestoreService.getInstructionsByCategory('recipe'),
+        stream: firestore.getInstructionsByCategory('recipe'),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -56,7 +58,7 @@ class RecipesPage extends StatelessWidget {
                   instruction: Instruction(
                       category: 'recipe', title: '', description: '')));
           if (instruction != null) {
-            await FirestoreService.addInstruction(instruction, ingredients);
+            await firestore.addInstruction(instruction, ingredients);
           }
         },
         child: const Icon(Icons.add),

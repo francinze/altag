@@ -2,6 +2,8 @@ import 'package:altag/firebase_options.dart';
 import 'package:altag/pages/home.dart';
 import 'package:altag/pages/unauth.dart';
 import 'package:altag/providers/auth.dart';
+import 'package:altag/providers/firestore_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -38,6 +40,18 @@ class HouseInstructionsApp extends StatefulWidget {
 }
 
 class _HouseInstructionsAppState extends State<HouseInstructionsApp> {
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<FirestoreService>(context, listen: false)
+        .init(FirebaseFirestore.instance);
+  }
+
   /// The widget that configures the top-level routing.
   ///
   /// This widget is the configuration for the [MaterialApp] widget and
