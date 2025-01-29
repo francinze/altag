@@ -6,6 +6,7 @@ version: 1.0.0+1
 environment:
   sdk: ^3.5.4
 dependencies:
+  auto_exporter_annotation: ^1.0.1
   cloud_firestore: ^5.6.1
   cupertino_icons: ^1.0.8
   dev: ^1.0.0
@@ -25,6 +26,9 @@ dependencies:
   webauthn: ^0.2.5
 
 dev_dependencies:
+  auto_exporter: ^3.3.0
+  build_runner: ^2.4.13
+  build_test: ^2.2.0
   flutter_driver:
     sdk: flutter
   flutter_test:

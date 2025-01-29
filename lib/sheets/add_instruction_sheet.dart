@@ -111,7 +111,6 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
             ),
             ElevatedButton(
               onPressed: () {
-                print(descriptionController.text);
                 Navigator.pop(context, (
                   widget.instruction.category == 'recipe'
                       ? Recipe(

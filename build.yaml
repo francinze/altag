@@ -1,0 +1,13 @@
+targets:
+  $default:
+    builders:
+      auto_exporter:
+        options:
+          default_export_all: false
+          project_name: index
+          sub-packages:
+            - models
+            - pages
+            - providers
+            - sheets
+            - widgets
