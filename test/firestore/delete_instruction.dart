@@ -5,11 +5,8 @@ import 'package:altag/providers/firestore_service.dart';
 void main() {
   group('deleteInstruction', () {
     TestWidgetsFlutterBinding.ensureInitialized();
-    final service = FirestoreService();
     final firestore = FakeFirebaseFirestore();
-    setUpAll(() async {
-      service.init(firestore);
-    });
+    final service = FirestoreService(firestore);
 
     test('deletes an instruction with a valid ID', () async {
       final instructionId = await firestore

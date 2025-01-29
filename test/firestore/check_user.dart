@@ -5,11 +5,8 @@ import 'package:altag/providers/firestore_service.dart';
 void main() {
   group('FirestoreService', () {
     TestWidgetsFlutterBinding.ensureInitialized();
-    final service = FirestoreService();
     final firestore = FakeFirebaseFirestore();
-    setUpAll(() async {
-      service.init(firestore);
-    });
+    final service = FirestoreService(firestore);
 
     test('checkUser throws an error when the user is not found', () async {
       // Arrange

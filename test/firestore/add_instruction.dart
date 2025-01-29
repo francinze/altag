@@ -7,9 +7,8 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('addInstruction', () {
     TestWidgetsFlutterBinding.ensureInitialized();
-    final service = FirestoreService();
     final firestore = FakeFirebaseFirestore();
-    setUpAll(() async => service.init(firestore));
+    final service = FirestoreService(firestore);
 
     tearDown(() async {
       // Clean up after all tests

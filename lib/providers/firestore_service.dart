@@ -1,6 +1,5 @@
 import 'package:altag/models/recipe.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:webauthn/webauthn.dart';
 
@@ -9,10 +8,12 @@ import '../models/instruction.dart';
 class FirestoreService extends ChangeNotifier {
   late FirebaseFirestore _firestore;
 
-  void init(FirebaseFirestore instance) {
-    _firestore = instance;
-    if (_firestore.runtimeType != FakeFirebaseFirestore) {
+  FirestoreService(FirebaseFirestore? instance) {
+    if (instance == null) {
+      _firestore = FirebaseFirestore.instance;
       _firestore.settings = const Settings(persistenceEnabled: false);
+    } else {
+      _firestore = instance;
     }
     notifyListeners();
   }

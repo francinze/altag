@@ -5,11 +5,9 @@ import 'package:altag/providers/firestore_service.dart';
 
 void main() {
   group('updateIngredient', () {
-    final service = FirestoreService();
+    TestWidgetsFlutterBinding.ensureInitialized();
     final firestore = FakeFirebaseFirestore();
-    setUpAll(() async {
-      service.init(firestore);
-    });
+    final service = FirestoreService(firestore);
 
     setUp(() async {
       await firestore.collection('instructions').doc('test-id').set({});

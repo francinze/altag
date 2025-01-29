@@ -4,9 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('getInstructions', () {
-    final service = FirestoreService();
+    TestWidgetsFlutterBinding.ensureInitialized();
     final firestore = FakeFirebaseFirestore();
-    setUpAll(() => service.init(firestore));
+    final service = FirestoreService(firestore);
 
     setUp(() async {
       await firestore.collection('instructions').get().then((snapshot) {

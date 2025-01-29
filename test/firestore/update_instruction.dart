@@ -6,11 +6,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('updateInstruction', () {
-    final service = FirestoreService();
+    TestWidgetsFlutterBinding.ensureInitialized();
     final firestore = FakeFirebaseFirestore();
-    setUpAll(() async {
-      service.init(firestore);
-    });
+    final service = FirestoreService(firestore);
 
     test('updates an instruction with no ingredients', () async {
       // Arrange

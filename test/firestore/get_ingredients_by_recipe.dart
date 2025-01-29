@@ -6,9 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('getIngredientsByRecipe', () {
     TestWidgetsFlutterBinding.ensureInitialized();
-    final service = FirestoreService();
     final firestore = FakeFirebaseFirestore();
-    setUpAll(() => service.init(firestore));
+    final service = FirestoreService(firestore);
 
     test('returns a Stream of Map with ingredients when recipe ID exists',
         () async {
