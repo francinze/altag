@@ -1,8 +1,10 @@
 import 'package:altag/pages/dashboard.dart';
 import 'package:altag/pages/search.dart';
 import 'package:altag/pages/settings.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/auth.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,28 +16,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
   void onPageSelected(int index) => setState(() => selectedIndex = index);
-  User? _user;
 
   final List<Widget> pages = [
     const DashboardPage(),
     const SearchPage(),
     const SettingsPage(),
   ];
-
-  @override
-  void initState() {
-    super.initState();
-    // Listen for auth state changes
-    FirebaseAuth.instance
-        .authStateChanges()
-        .listen((user) => setState(() => _user = user));
-  }
-
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<HouseAuthProvider>(context);
     return Scaffold(
       appBar: AppBar(title: const Text('AltaGuardiaHub')),
-      floatingActionButton: _user == null
+      floatingActionButton: auth.user == null
           ? FloatingActionButton.extended(
               onPressed: () => Navigator.pushNamed(context, '/unauth'),
               label: const Text('Login'),
