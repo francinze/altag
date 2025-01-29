@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "addIngredient": MessageLookupByLibrary.simpleMessage("Add Ingredient"),
+    "addIngredientOption": MessageLookupByLibrary.simpleMessage("Add Option"),
     "addInstruction": MessageLookupByLibrary.simpleMessage("Add Instruction"),
     "addRecipe": MessageLookupByLibrary.simpleMessage("Add Recipe"),
     "appliancesTitle": MessageLookupByLibrary.simpleMessage("Appliances"),
@@ -44,7 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Heating, ventilation, and air conditioning",
     ),
     "hvacTemperatureSettingsSubtitle": MessageLookupByLibrary.simpleMessage(
-      "The recommended temperature settings are 68°F in the winter and 78°F in the summer.",
+      "The recommended temperature settings are 18°C in the winter and 25°C in the summer.",
     ),
     "hvacTemperatureSettingsTitle": MessageLookupByLibrary.simpleMessage(
       "Temperature Settings",
@@ -84,7 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "powerOutageTitle": MessageLookupByLibrary.simpleMessage("Power Outage"),
     "powerOutageWhatToDoSubtitle": MessageLookupByLibrary.simpleMessage(
-      "If the power goes out, check the circuit breaker or fuse box to see if a switch has been tripped or a fuse has blown. If the problem persists, contact the power company.",
+      "If the power goes out, check the circuit breaker or fuse box to see if a switch has been tripped or a fuse has blown. If the problem persists, try going to the building switches downstairs, and see if number 13 (labelled Inzerillo) is turned off. It it\'s not, try checking if the building is experiencing a blackout.",
     ),
     "powerOutageWhatToDoTitle": MessageLookupByLibrary.simpleMessage(
       "What to do",
@@ -96,13 +97,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "settingsTitle": MessageLookupByLibrary.simpleMessage("Settings"),
     "utilitiesTitle": MessageLookupByLibrary.simpleMessage("Utilities"),
     "waterShutOffInstructionsSubtitle": MessageLookupByLibrary.simpleMessage(
-      "To shut off the water, turn the valve clockwise until it stops. To turn the water back on, turn the valve counterclockwise until it stops.",
+      "To shut off the water, turn the valve 90° counterclockwise. To turn the water back on, turn the valve clockwise 90°. The bathroom valve is the round one to the right. To turn it on and off, turn the valve counterclockwise or clockwise until the water is flowing or not.",
     ),
     "waterShutOffInstructionsTitle": MessageLookupByLibrary.simpleMessage(
       "Instructions",
     ),
     "waterShutOffLocationSubtitle": MessageLookupByLibrary.simpleMessage(
-      "The main water shut off valve is located in the basement, near the water meter.",
+      "The main water shut off valves are located under the sink in the kitchen.",
     ),
     "waterShutOffLocationTitle": MessageLookupByLibrary.simpleMessage(
       "Location",

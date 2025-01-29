@@ -26,6 +26,7 @@
     "instructionTitleLabel": "Titolo istruzione",
     "instructionDescriptionLabel": "Descrizione istruzione",
     "addIngredient": "Aggiungi ingrediente",
+    "addIngredientOption": "Aggiungi opzione",
     "ingrTitleLabel": "Titolo ingrediente",
     "ingrDescriptionLabel": "Descrizione ingrediente",
     "ingrURLLabel": "URL ingrediente",
@@ -40,13 +41,13 @@
     "waterShutOffTitle": "Chiusura dell'acqua",
     "waterShutOffSubtitle": "Come spegnere l'acqua",
     "waterShutOffLocationTitle": "Posizione della valvola",
-    "waterShutOffLocationSubtitle": "La valvola di chiusura dell'acqua è situata nella cucina.",
+    "waterShutOffLocationSubtitle": "La valvola di chiusura dell'acqua è situata sotto il lavello nella cucina.",
     "waterShutOffInstructionsTitle": "Instruzioni",
-    "waterShutOffInstructionsSubtitle": "Per spegnere l'acqua, ruota la valvola in senso antiorario fino a quando non si ferma. Per riaccendere l'acqua, ruota la valvola in senso orario fino a quando non si ferma.",
+    "waterShutOffInstructionsSubtitle": "Per chiudere l'acqua, ruotare la valvola di 90° in senso antiorario. Per riaccendere l'acqua, ruotare la valvola di 90° in senso orario. La valvola del bagno è quella rotonda a destra. Per accenderla e spegnerla, ruotare la valvola in senso antiorario o orario fino a quando l'acqua scorre o no.",
     "powerOutageTitle": "Salto della luce",
     "powerOutageSubtitle": "Come fare se salta la luce",
     "powerOutageWhatToDoTitle": "Cosa fare",
-    "powerOutageWhatToDoSubtitle": "Se salta la luce, controlla il circuito o il box di fusi per vedere se un interruttore è stato scollegato o se un fusibile è scollegato. Se il problema persiste, contatta la compagnia di energia.",
+    "powerOutageWhatToDoSubtitle": "Se salta la luce, controllare il quadro elettrico o il fusibile per vedere se un interruttore è stato azionato o un fusibile è saltato. Se il problema persiste, provare a recarsi ai quadri elettrici del palazzo nella cantina al piano seminterrato, e vedere se il numero 13 (etichettato Inzerillo) è spento. Se non lo è, provare a verificare se il palazzo sta subendo un blackout.",
     "powerOutageSafetyPrecautionsTitle": "Precazioni di sicurezza",
     "powerOutageSafetyPrecautionsSubtitle": "Evitare di usare candele o fiamme, poiché possono essere un pericolo di incendio. Usare luci da batteria o luci da batteria per evitare di usare candele o fiamme.",
     "hvacTitle": "HVAC",
@@ -54,5 +55,5 @@
     "hvacThermostatLocationTitle": "Posizione del termostato",
     "hvacThermostatLocationSubtitle": "Il termostato è situato nella stanza, sulla parete vicino alla finestra.",
     "hvacTemperatureSettingsTitle": "Impostazioni di temperatura",
-    "hvacTemperatureSettingsSubtitle": "Le impostazioni di temperatura raccomandate sono 68°F in inverno e 78°F in estate."
+    "hvacTemperatureSettingsSubtitle": "Le impostazioni di temperatura raccomandate sono 18°C in inverno e 25°C in estate."
 }

@@ -1,7 +1,6 @@
 import 'package:altag/pages/dashboard.dart';
 import 'package:altag/pages/search.dart';
 import 'package:altag/pages/settings.dart';
-import 'package:altag/pages/unauth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -38,13 +37,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(title: const Text('AltaGuardiaHub')),
       floatingActionButton: _user == null
           ? FloatingActionButton.extended(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const UnauthenticatedPage()),
-                );
-              },
+              onPressed: () => Navigator.pushNamed(context, '/unauth'),
               label: const Text('Login'),
               icon: const Icon(Icons.login),
             )

@@ -1,7 +1,4 @@
 import 'package:altag/generated/l10n.dart';
-import 'package:altag/pages/recipes.dart';
-import 'package:altag/pages/utilities.dart';
-import 'package:altag/pages/whiteboard.dart';
 import 'package:altag/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,10 +32,7 @@ class DashboardPage extends StatelessWidget {
                 _CategoryCard(
                   icon: Icons.plumbing,
                   label: S.of(context).utilitiesTitle,
-                  onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const UtilitiesPage())),
+                  onTap: () => Navigator.pushNamed(context, '/utilities'),
                 ),
                 _CategoryCard(
                   icon: Icons.kitchen,
@@ -50,11 +44,7 @@ class DashboardPage extends StatelessWidget {
                 _CategoryCard(
                   icon: Icons.book,
                   label: S.of(context).recipesTitle,
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const RecipesPage()),
-                  ),
+                  onTap: () => Navigator.pushNamed(context, '/recipes'),
                 ),
                 _CategoryCard(
                   icon: Icons.cleaning_services,
@@ -67,11 +57,7 @@ class DashboardPage extends StatelessWidget {
                   _CategoryCard(
                     icon: Icons.notes,
                     label: S.of(context).whiteboardTitle,
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const WhiteboardPage()),
-                    ),
+                    onTap: () => Navigator.pushNamed(context, '/whiteboard'),
                   ),
               ],
             ),

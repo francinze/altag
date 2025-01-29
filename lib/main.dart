@@ -1,12 +1,23 @@
 import 'package:altag/firebase_options.dart';
 import 'package:altag/pages/home.dart';
+import 'package:altag/pages/unauth.dart';
 import 'package:altag/providers/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
 import 'generated/l10n.dart';
+import 'pages/recipes/ingredient.dart';
+import 'pages/recipes/recipe.dart';
+import 'pages/recipes/recipes.dart';
+import 'pages/settings.dart';
+import 'pages/utilities/hvac.dart';
+import 'pages/utilities/power.dart';
+import 'pages/utilities/utilities.dart';
+import 'pages/utilities/water.dart';
+import 'pages/whiteboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,5 +68,17 @@ class _HouseInstructionsAppState extends State<HouseInstructionsApp> {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: Locale(Intl.getCurrentLocale()),
-      home: const HomePage());
+      home: const HomePage(),
+      routes: {
+        '/settings': (context) => const SettingsPage(),
+        '/unauth': (context) => const UnauthenticatedPage(),
+        '/utilities': (context) => const UtilitiesPage(),
+        '/water': (context) => const WaterInstructionsPage(),
+        '/power': (context) => const PowerInstructionsPage(),
+        '/hvac': (context) => const HVACInstructionsPage(),
+        '/whiteboard': (context) => const WhiteboardPage(),
+        '/recipes': (context) => const RecipesPage(),
+        '/recipe': (context) => const RecipePage(),
+        '/ingredient': (context) => const IngredientPage(),
+      });
 }

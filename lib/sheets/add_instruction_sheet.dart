@@ -37,25 +37,24 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
     final descriptionController =
         TextEditingController(text: widget.instruction.description);
     final s = S.of(context);
-    return Card(
-      margin: const EdgeInsets.all(16.0),
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.8,
       color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
                 widget.instruction.category == 'recipe'
                     ? s.addRecipe
                     : s.addInstruction,
                 style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 8.0),
+            const SizedBox(height: 8),
             TextField(
               controller: titleController,
               decoration: InputDecoration(labelText: s.instructionTitleLabel),
             ),
-            const SizedBox(height: 8.0),
+            const SizedBox(height: 8),
             TextField(
               maxLines: null,
               controller: descriptionController,
@@ -63,11 +62,10 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
                   InputDecoration(labelText: s.instructionDescriptionLabel),
             ),
             const SizedBox(height: 8.0),
-            SizedBox(
-              height: 150,
-              child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.all(4),
+            Expanded(
+              child: GridView(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3),
                   children: [
                     ...ingredients.map(
                       (controller, ingredientList) {
@@ -76,7 +74,7 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
                             Padding(
                               padding: const EdgeInsets.all(3),
                               child: SizedBox(
-                                width: 150,
+                                height: 150,
                                 child: ListView(
                                   children: [
                                     TextField(controller: controller),
@@ -94,9 +92,9 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
                                                     newIngrList);
                                           }
                                         },
-                                        child: SizedBox(
-                                            height: 30,
-                                            child: Text(s.addIngredient))),
+                                        child: Text(s.addIngredientOption,
+                                            style:
+                                                const TextStyle(fontSize: 11))),
                                     ...ingredientList.map((e) => Text(e.name)),
                                   ],
                                 ),
@@ -112,22 +110,25 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
                   ]),
             ),
             ElevatedButton(
-              onPressed: () => Navigator.pop(context, (
-                widget.instruction.category == 'recipe'
-                    ? Recipe(
-                        title: titleController.text,
-                        description: descriptionController.text,
-                      )
-                    : Instruction(
-                        title: titleController.text,
-                        description: descriptionController.text,
-                        category: widget.instruction.category,
-                      ),
-                Map.fromEntries(
-                  ingredients.entries
-                      .map((entry) => MapEntry(entry.key.text, entry.value)),
-                )
-              )),
+              onPressed: () {
+                print(descriptionController.text);
+                Navigator.pop(context, (
+                  widget.instruction.category == 'recipe'
+                      ? Recipe(
+                          title: titleController.text,
+                          description: descriptionController.text,
+                        )
+                      : Instruction(
+                          title: titleController.text,
+                          description: descriptionController.text,
+                          category: widget.instruction.category,
+                        ),
+                  Map.fromEntries(
+                    ingredients.entries
+                        .map((entry) => MapEntry(entry.key.text, entry.value)),
+                  )
+                ));
+              },
               child: Text(s.saveInstruction),
             ),
           ],

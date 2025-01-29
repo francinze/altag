@@ -225,6 +225,16 @@ class S {
     );
   }
 
+  /// `Add Option`
+  String get addIngredientOption {
+    return Intl.message(
+      'Add Option',
+      name: 'addIngredientOption',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Ingredient Title`
   String get ingrTitleLabel {
     return Intl.message(
@@ -330,10 +340,10 @@ class S {
     );
   }
 
-  /// `The main water shut off valve is located in the basement, near the water meter.`
+  /// `The main water shut off valves are located under the sink in the kitchen.`
   String get waterShutOffLocationSubtitle {
     return Intl.message(
-      'The main water shut off valve is located in the basement, near the water meter.',
+      'The main water shut off valves are located under the sink in the kitchen.',
       name: 'waterShutOffLocationSubtitle',
       desc: '',
       args: [],
@@ -350,10 +360,10 @@ class S {
     );
   }
 
-  /// `To shut off the water, turn the valve clockwise until it stops. To turn the water back on, turn the valve counterclockwise until it stops.`
+  /// `To shut off the water, turn the valve 90° counterclockwise. To turn the water back on, turn the valve clockwise 90°. The bathroom valve is the round one to the right. To turn it on and off, turn the valve counterclockwise or clockwise until the water is flowing or not.`
   String get waterShutOffInstructionsSubtitle {
     return Intl.message(
-      'To shut off the water, turn the valve clockwise until it stops. To turn the water back on, turn the valve counterclockwise until it stops.',
+      'To shut off the water, turn the valve 90° counterclockwise. To turn the water back on, turn the valve clockwise 90°. The bathroom valve is the round one to the right. To turn it on and off, turn the valve counterclockwise or clockwise until the water is flowing or not.',
       name: 'waterShutOffInstructionsSubtitle',
       desc: '',
       args: [],
@@ -390,10 +400,10 @@ class S {
     );
   }
 
-  /// `If the power goes out, check the circuit breaker or fuse box to see if a switch has been tripped or a fuse has blown. If the problem persists, contact the power company.`
+  /// `If the power goes out, check the circuit breaker or fuse box to see if a switch has been tripped or a fuse has blown. If the problem persists, try going to the building switches downstairs, and see if number 13 (labelled Inzerillo) is turned off. It it's not, try checking if the building is experiencing a blackout.`
   String get powerOutageWhatToDoSubtitle {
     return Intl.message(
-      'If the power goes out, check the circuit breaker or fuse box to see if a switch has been tripped or a fuse has blown. If the problem persists, contact the power company.',
+      'If the power goes out, check the circuit breaker or fuse box to see if a switch has been tripped or a fuse has blown. If the problem persists, try going to the building switches downstairs, and see if number 13 (labelled Inzerillo) is turned off. It it\'s not, try checking if the building is experiencing a blackout.',
       name: 'powerOutageWhatToDoSubtitle',
       desc: '',
       args: [],
@@ -465,10 +475,10 @@ class S {
     );
   }
 
-  /// `The recommended temperature settings are 68°F in the winter and 78°F in the summer.`
+  /// `The recommended temperature settings are 18°C in the winter and 25°C in the summer.`
   String get hvacTemperatureSettingsSubtitle {
     return Intl.message(
-      'The recommended temperature settings are 68°F in the winter and 78°F in the summer.',
+      'The recommended temperature settings are 18°C in the winter and 25°C in the summer.',
       name: 'hvacTemperatureSettingsSubtitle',
       desc: '',
       args: [],

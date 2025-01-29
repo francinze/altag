@@ -25,6 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "addIngredient": MessageLookupByLibrary.simpleMessage(
       "Aggiungi ingrediente",
     ),
+    "addIngredientOption": MessageLookupByLibrary.simpleMessage(
+      "Aggiungi opzione",
+    ),
     "addInstruction": MessageLookupByLibrary.simpleMessage(
       "Aggiungi istruzione",
     ),
@@ -48,7 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Riscaldamento, ventilazione e aria condizionata",
     ),
     "hvacTemperatureSettingsSubtitle": MessageLookupByLibrary.simpleMessage(
-      "Le impostazioni di temperatura raccomandate sono 68°F in inverno e 78°F in estate.",
+      "Le impostazioni di temperatura raccomandate sono 18°C in inverno e 25°C in estate.",
     ),
     "hvacTemperatureSettingsTitle": MessageLookupByLibrary.simpleMessage(
       "Impostazioni di temperatura",
@@ -94,7 +97,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Salto della luce",
     ),
     "powerOutageWhatToDoSubtitle": MessageLookupByLibrary.simpleMessage(
-      "Se salta la luce, controlla il circuito o il box di fusi per vedere se un interruttore è stato scollegato o se un fusibile è scollegato. Se il problema persiste, contatta la compagnia di energia.",
+      "Se salta la luce, controllare il quadro elettrico o il fusibile per vedere se un interruttore è stato azionato o un fusibile è saltato. Se il problema persiste, provare a recarsi ai quadri elettrici del palazzo nella cantina al piano seminterrato, e vedere se il numero 13 (etichettato Inzerillo) è spento. Se non lo è, provare a verificare se il palazzo sta subendo un blackout.",
     ),
     "powerOutageWhatToDoTitle": MessageLookupByLibrary.simpleMessage(
       "Cosa fare",
@@ -106,13 +109,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "settingsTitle": MessageLookupByLibrary.simpleMessage("Impostazioni"),
     "utilitiesTitle": MessageLookupByLibrary.simpleMessage("Utilità"),
     "waterShutOffInstructionsSubtitle": MessageLookupByLibrary.simpleMessage(
-      "Per spegnere l\'acqua, ruota la valvola in senso antiorario fino a quando non si ferma. Per riaccendere l\'acqua, ruota la valvola in senso orario fino a quando non si ferma.",
+      "Per chiudere l\'acqua, ruotare la valvola di 90° in senso antiorario. Per riaccendere l\'acqua, ruotare la valvola di 90° in senso orario. La valvola del bagno è quella rotonda a destra. Per accenderla e spegnerla, ruotare la valvola in senso antiorario o orario fino a quando l\'acqua scorre o no.",
     ),
     "waterShutOffInstructionsTitle": MessageLookupByLibrary.simpleMessage(
       "Instruzioni",
     ),
     "waterShutOffLocationSubtitle": MessageLookupByLibrary.simpleMessage(
-      "La valvola di chiusura dell\'acqua è situata nella cucina.",
+      "La valvola di chiusura dell\'acqua è situata sotto il lavello nella cucina.",
     ),
     "waterShutOffLocationTitle": MessageLookupByLibrary.simpleMessage(
       "Posizione della valvola",
