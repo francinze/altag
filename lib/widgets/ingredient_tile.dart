@@ -51,8 +51,11 @@ class _IngredientTileState extends State<IngredientTile> {
                       onPressed: () =>
                           launchUrlString(widget.i.value.productUrl),
                       child: const Text('LINK')),
-                  Image.asset('assets/ingredients/${widget.i.value.imageUrl!}',
-                      width: 100, height: 100),
+                  if (widget.i.value.imageUrl != null)
+                    Image.asset(
+                        'assets/ingredients/${widget.i.value.imageUrl!}',
+                        width: 100,
+                        height: 100),
                 ],
               ),
             ),

@@ -40,7 +40,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ElevatedButton(
               onPressed: () {
                 try {
-                  HouseAuthProvider().logout();
+                  authProvider.logout();
                 } catch (e) {
                   print(S.of(context).authLogoutFailed + e.toString());
                 }

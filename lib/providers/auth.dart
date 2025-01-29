@@ -3,11 +3,16 @@ import 'package:flutter/material.dart';
 
 class HouseAuthProvider extends ChangeNotifier {
   User? _user;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  late FirebaseAuth instance;
 
-  HouseAuthProvider() {
+  HouseAuthProvider(FirebaseAuth? auth) {
+    if (auth != null) {
+      instance = auth;
+    } else {
+      instance = FirebaseAuth.instance;
+    }
     // Listen to auth state changes
-    _auth.authStateChanges().listen((User? user) {
+    instance.authStateChanges().listen((User? user) {
       _user = user;
       notifyListeners(); // Notify listeners when the auth state changes
     });
@@ -22,7 +27,7 @@ class HouseAuthProvider extends ChangeNotifier {
   // Logout
   Future<void> logout() async {
     try {
-      await _auth.signOut();
+      await instance.signOut();
     } catch (_) {
       rethrow;
     }

@@ -27,11 +27,9 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider<FirestoreService>(
-          create: (context) => FirestoreService(null),
-        ),
+            create: (context) => FirestoreService(null)),
         ChangeNotifierProvider<HouseAuthProvider>(
-          create: (context) => HouseAuthProvider(),
-        ),
+            create: (context) => HouseAuthProvider(null)),
       ],
       child: const HouseInstructionsApp(),
     ),

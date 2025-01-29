@@ -11,7 +11,7 @@ import 'firestore/search_instructions.dart' as search_instructions;
 import 'firestore/update_ingredient.dart' as update_ingredient;
 import 'firestore/check_user.dart' as check_user;
 
-void main() async {
+void main() {
   group('FirestoreService', () {
     add_instruction.main();
     get_instructions.main();
