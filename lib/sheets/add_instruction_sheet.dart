@@ -126,7 +126,9 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
                       ? Recipe(
                           title: titleController.text,
                           description: descriptionController.text,
-                          imageUrl: imageController.text,
+                          imageUrl: imageController.text.trim().isEmpty
+                              ? null
+                              : imageController.text,
                         )
                       : Instruction(
                           title: titleController.text,
