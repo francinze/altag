@@ -39,7 +39,7 @@ jobs:
         run: sudo apt-get install -y lcov
 
       - name: Remove Unwanted Coverage Files
-        run: lcov --remove coverage/lcov.info 'lib/generated/*' 'lib/l10n/*' -o coverage/lcov.info
+        run: lcov --remove coverage/lcov.info 'lib/generated/*' -o coverage/lcov.info
 
       - name: Generate HTML Coverage Report
         run: genhtml coverage/lcov.info -o coverage/html
