@@ -515,6 +515,56 @@ class S {
     );
   }
 
+  /// `Button`
+  String get kitchenCoffeeMakerButtonLabel {
+    return Intl.message(
+      'Button',
+      name: 'kitchenCoffeeMakerButtonLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jar`
+  String get kitchenCoffeeMakerJarLabel {
+    return Intl.message(
+      'Jar',
+      name: 'kitchenCoffeeMakerJarLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Plug`
+  String get kitchenCoffeeMakerPlugLabel {
+    return Intl.message(
+      'Plug',
+      name: 'kitchenCoffeeMakerPlugLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tray`
+  String get kitchenCoffeeMakerTrayLabel {
+    return Intl.message(
+      'Tray',
+      name: 'kitchenCoffeeMakerTrayLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Water Tank`
+  String get kitchenCoffeeMakerWaterTankLabel {
+    return Intl.message(
+      'Water Tank',
+      name: 'kitchenCoffeeMakerWaterTankLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Counter Plugs`
   String get kitchenCounterPlugsTitle {
     return Intl.message(

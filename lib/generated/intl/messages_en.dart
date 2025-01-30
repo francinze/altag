@@ -78,14 +78,23 @@ class MessageLookup extends MessageLookupByLibrary {
     "kitchenAppliancesTitle": MessageLookupByLibrary.simpleMessage(
       "Kitchen Appliances",
     ),
+    "kitchenCoffeeMakerButtonLabel": MessageLookupByLibrary.simpleMessage(
+      "Button",
+    ),
     "kitchenCoffeeMakerInstructions": MessageLookupByLibrary.simpleMessage(
       "To brew a cup of coffee, first take your preferred filter from the jar on the coffee maker. Extract the tray and position the filter inside it, then re-insert the tray. Make sure the water tank is full. \nYou just need to plug the coffee maker, press the button one time and it will start to make coffee. The machine will brew the coffee, and just press the button again when you\'re done to turn it off.",
     ),
+    "kitchenCoffeeMakerJarLabel": MessageLookupByLibrary.simpleMessage("Jar"),
+    "kitchenCoffeeMakerPlugLabel": MessageLookupByLibrary.simpleMessage("Plug"),
     "kitchenCoffeeMakerSubtitle": MessageLookupByLibrary.simpleMessage(
       "The coffee maker is located on the kitchen counter.",
     ),
     "kitchenCoffeeMakerTitle": MessageLookupByLibrary.simpleMessage(
       "Coffee Maker",
+    ),
+    "kitchenCoffeeMakerTrayLabel": MessageLookupByLibrary.simpleMessage("Tray"),
+    "kitchenCoffeeMakerWaterTankLabel": MessageLookupByLibrary.simpleMessage(
+      "Water Tank",
     ),
     "kitchenCounterPlugsSubtitle": MessageLookupByLibrary.simpleMessage(
       "The counter plugs are located by the kitchen counter, close to the microwave.",

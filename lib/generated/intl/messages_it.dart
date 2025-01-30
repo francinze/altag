@@ -86,14 +86,29 @@ class MessageLookup extends MessageLookupByLibrary {
       "Elettrodomestici nella cucina",
     ),
     "kitchenAppliancesTitle": MessageLookupByLibrary.simpleMessage("Cucina"),
+    "kitchenCoffeeMakerButtonLabel": MessageLookupByLibrary.simpleMessage(
+      "Pulsante",
+    ),
     "kitchenCoffeeMakerInstructions": MessageLookupByLibrary.simpleMessage(
       "Per fare un caffè, prendere una capsula dal barattolo sulla caffettiera. Estrarre il supporto dalla caffettiera, inserire il filtro e rimettere il supporto. Controllare che l\'acqua della caffettiera non sia vuota. \nAttaccare la presa e premere una volta il pulsante. Il caffé comincerà ad essere erogato, per farlo smettere premere di nuovo il pulsante.",
+    ),
+    "kitchenCoffeeMakerJarLabel": MessageLookupByLibrary.simpleMessage(
+      "Barattolo",
+    ),
+    "kitchenCoffeeMakerPlugLabel": MessageLookupByLibrary.simpleMessage(
+      "Presa",
     ),
     "kitchenCoffeeMakerSubtitle": MessageLookupByLibrary.simpleMessage(
       "La caffettiera è situata sul bancone nella cucina.",
     ),
     "kitchenCoffeeMakerTitle": MessageLookupByLibrary.simpleMessage(
       "Caffettiera",
+    ),
+    "kitchenCoffeeMakerTrayLabel": MessageLookupByLibrary.simpleMessage(
+      "Supporto",
+    ),
+    "kitchenCoffeeMakerWaterTankLabel": MessageLookupByLibrary.simpleMessage(
+      "Acqua",
     ),
     "kitchenCounterPlugsSubtitle": MessageLookupByLibrary.simpleMessage(
       "Le prese del bancone sono situate sul bancone nella cucina, a destra del microonde.",
