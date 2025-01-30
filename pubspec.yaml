@@ -41,6 +41,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/appliances/
     - assets/ingredients/
+    - assets/recipes/
 flutter_intl:
   enabled: true

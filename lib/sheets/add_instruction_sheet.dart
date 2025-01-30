@@ -36,6 +36,9 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
         TextEditingController(text: widget.instruction.title);
     final descriptionController =
         TextEditingController(text: widget.instruction.description);
+
+    final imageController =
+        TextEditingController(text: widget.instruction.imageUrl ?? '');
     final s = S.of(context);
     return Container(
       height: MediaQuery.of(context).size.height * 0.8,
@@ -61,7 +64,7 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
               decoration:
                   InputDecoration(labelText: s.instructionDescriptionLabel),
             ),
-            const SizedBox(height: 8.0),
+            const SizedBox(height: 8),
             Expanded(
               child: GridView(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -109,6 +112,13 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
                             SizedBox(height: 30, child: Text(s.addIngredient))),
                   ]),
             ),
+            const SizedBox(height: 8),
+            TextField(
+              maxLines: 1,
+              controller: imageController,
+              decoration: InputDecoration(labelText: s.instructionImageLabel),
+            ),
+            const SizedBox(height: 8),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context, (
@@ -116,11 +126,13 @@ class _AddInstructionSheetState extends State<AddInstructionSheet> {
                       ? Recipe(
                           title: titleController.text,
                           description: descriptionController.text,
+                          imageUrl: imageController.text,
                         )
                       : Instruction(
                           title: titleController.text,
                           description: descriptionController.text,
                           category: widget.instruction.category,
+                          imageUrl: imageController.text,
                         ),
                   Map.fromEntries(
                     ingredients.entries

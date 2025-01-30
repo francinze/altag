@@ -2,7 +2,6 @@ import 'package:altag/providers/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
 import '../generated/l10n.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -42,7 +41,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 try {
                   authProvider.logout();
                 } catch (e) {
-                  print(S.of(context).authLogoutFailed + e.toString());
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                        content: Text(
+                            S.of(context).authLogoutFailed + e.toString())),
+                  );
                 }
               },
               child: Text(S.of(context).logoutLabel)),

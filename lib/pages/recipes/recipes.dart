@@ -35,11 +35,16 @@ class RecipesPage extends StatelessWidget {
             itemBuilder: (context, index) {
               final recipe = instructions.entries.elementAt(index);
               return ListTile(
+                  contentPadding: const EdgeInsets.all(8.0),
                   title: Text(recipe.value.title),
                   subtitle: Text(recipe.value.description,
-                      maxLines: 5, overflow: TextOverflow.ellipsis),
+                      maxLines: 3, overflow: TextOverflow.ellipsis),
                   trailing: recipe.value.imageUrl != null
-                      ? Image.asset(recipe.value.imageUrl!)
+                      ? Image.asset(
+                          'assets/recipes/${recipe.value.imageUrl!}',
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          fit: BoxFit.contain,
+                        )
                       : null,
                   onTap: () => Navigator.pushNamed(context, '/recipe',
                       arguments: RecipePageArguments(

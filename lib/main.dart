@@ -1,6 +1,4 @@
 import 'package:altag/firebase_options.dart';
-import 'package:altag/pages/home.dart';
-import 'package:altag/pages/unauth.dart';
 import 'package:altag/providers/auth.dart';
 import 'package:altag/providers/firestore_service.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,10 +8,13 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'generated/l10n.dart';
+import 'pages/appliances/appliances.dart';
+import 'pages/appliances/kitchen.dart';
+import 'pages/home.dart';
 import 'pages/recipes/ingredient.dart';
 import 'pages/recipes/recipe.dart';
 import 'pages/recipes/recipes.dart';
-import 'pages/settings.dart';
+import 'pages/unauth.dart';
 import 'pages/utilities/hvac.dart';
 import 'pages/utilities/power.dart';
 import 'pages/utilities/utilities.dart';
@@ -44,16 +45,6 @@ class HouseInstructionsApp extends StatefulWidget {
 }
 
 class _HouseInstructionsAppState extends State<HouseInstructionsApp> {
-  /// The widget that configures the top-level routing.
-  ///
-  /// This widget is the configuration for the [MaterialApp] widget and
-  /// is the root of the widget tree. It configures the available
-  /// localizations and the home page of the app.
-  ///
-  /// The [MaterialApp] is configured with a blue color scheme and a
-  /// bold headline font style. The [S.delegate] is used
-  /// to configure the app's localizations.
-  ///
   @override
   Widget build(BuildContext context) => MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -74,9 +65,9 @@ class _HouseInstructionsAppState extends State<HouseInstructionsApp> {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: Locale(Intl.getCurrentLocale()),
-      home: const HomePage(),
+      initialRoute: '/home',
       routes: {
-        '/settings': (context) => const SettingsPage(),
+        '/home': (context) => const HomePage(),
         '/unauth': (context) => const UnauthenticatedPage(),
         '/utilities': (context) => const UtilitiesPage(),
         '/water': (context) => const WaterInstructionsPage(),
@@ -86,5 +77,7 @@ class _HouseInstructionsAppState extends State<HouseInstructionsApp> {
         '/recipes': (context) => const RecipesPage(),
         '/recipe': (context) => const RecipePage(),
         '/ingredient': (context) => const IngredientPage(),
+        '/appliances': (context) => const AppliancesPage(),
+        '/kitchen': (context) => const KitchenAppliancesPage(),
       });
 }

@@ -76,9 +76,55 @@ class MessageLookup extends MessageLookupByLibrary {
     "instructionDescriptionLabel": MessageLookupByLibrary.simpleMessage(
       "Descrizione istruzione",
     ),
+    "instructionImageLabel": MessageLookupByLibrary.simpleMessage(
+      "Immagine istruzione",
+    ),
     "instructionTitleLabel": MessageLookupByLibrary.simpleMessage(
       "Titolo istruzione",
     ),
+    "kitchenAppliancesSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Elettrodomestici nella cucina",
+    ),
+    "kitchenAppliancesTitle": MessageLookupByLibrary.simpleMessage("Cucina"),
+    "kitchenCoffeeMakerInstructions": MessageLookupByLibrary.simpleMessage(
+      "Per fare un caffè, prendere una capsula dal barattolo sulla caffettiera. Estrarre il supporto dalla caffettiera, inserire il filtro e rimettere il supporto. Controllare che l\'acqua della caffettiera non sia vuota. \nAttaccare la presa e premere una volta il pulsante. Il caffé comincerà ad essere erogato, per farlo smettere premere di nuovo il pulsante.",
+    ),
+    "kitchenCoffeeMakerSubtitle": MessageLookupByLibrary.simpleMessage(
+      "La caffettiera è situata sul bancone nella cucina.",
+    ),
+    "kitchenCoffeeMakerTitle": MessageLookupByLibrary.simpleMessage(
+      "Caffettiera",
+    ),
+    "kitchenCounterPlugsSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Le prese del bancone sono situate sul bancone nella cucina, a destra del microonde.",
+    ),
+    "kitchenCounterPlugsTitle": MessageLookupByLibrary.simpleMessage(
+      "Prese del bancone",
+    ),
+    "kitchenFridgeSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Il Frigorifero è situato a destra del bancone della cucina.",
+    ),
+    "kitchenFridgeTitle": MessageLookupByLibrary.simpleMessage("Frigorifero"),
+    "kitchenKettleSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Il bollitore è situato sul bancone nella cucina.",
+    ),
+    "kitchenKettleTitle": MessageLookupByLibrary.simpleMessage("Bollitore"),
+    "kitchenMicrowaveSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Il microonde è situato sul bancone nella cucina.",
+    ),
+    "kitchenMicrowaveTitle": MessageLookupByLibrary.simpleMessage("Microonde"),
+    "kitchenOvenSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Il forno è situato nella cucina, sotto i fornelli.",
+    ),
+    "kitchenOvenTitle": MessageLookupByLibrary.simpleMessage("Forno"),
+    "kitchenStoveSubtitle": MessageLookupByLibrary.simpleMessage(
+      "I fornelli sono situati sul bancone nella cucina.",
+    ),
+    "kitchenStoveTitle": MessageLookupByLibrary.simpleMessage("Fornelli"),
+    "kitchenToasterSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Il tostapane è situato nella credenza rossa sul lato destro della cucina.",
+    ),
+    "kitchenToasterTitle": MessageLookupByLibrary.simpleMessage("Tostapane"),
     "languageLabel": MessageLookupByLibrary.simpleMessage("Lingua: "),
     "logoutLabel": MessageLookupByLibrary.simpleMessage("Logout"),
     "noNotesMsg": MessageLookupByLibrary.simpleMessage("Nessuna nota"),

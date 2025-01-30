@@ -37,9 +37,7 @@ class DashboardPage extends StatelessWidget {
                 _CategoryCard(
                   icon: Icons.kitchen,
                   label: S.of(context).appliancesTitle,
-                  onTap: () {
-                    // Navigate to Appliances page
-                  },
+                  onTap: () => Navigator.pushNamed(context, '/appliances'),
                 ),
                 _CategoryCard(
                   icon: Icons.book,

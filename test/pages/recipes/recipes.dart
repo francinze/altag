@@ -5,7 +5,6 @@ import 'package:altag/pages/recipes/recipe.dart';
 import 'package:altag/providers/auth.dart';
 import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:altag/pages/recipes/recipes.dart';
 import 'package:altag/providers/firestore_service.dart';
@@ -48,12 +47,7 @@ void main() {
           ],
           child: const MaterialApp(
             home: RecipesPage(),
-            localizationsDelegates: [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
+            localizationsDelegates: [S.delegate],
           ),
         ),
       );
@@ -77,12 +71,7 @@ void main() {
           ],
           child: const MaterialApp(
             home: RecipesPage(),
-            localizationsDelegates: [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
+            localizationsDelegates: [S.delegate],
           ),
         ),
       );
@@ -111,12 +100,7 @@ void main() {
               '/recipe': (_) => const RecipePage(),
             },
             home: const RecipesPage(),
-            localizationsDelegates: const [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
+            localizationsDelegates: const [S.delegate],
           ),
         ),
       );

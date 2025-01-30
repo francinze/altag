@@ -8,16 +8,16 @@
     "settingsTitle": "Settings",
     "logoutLabel": "Logout",
 
+    "languageLabel": "Language: ",
+
     "authUserNotFound": "No user found for this username.",
     "authLogoutFailed": "Failed to logout: ",
 
+    "recipesTitle": "Recipes",
     "utilitiesTitle": "Utilities",
     "appliancesTitle": "Appliances",
-    "recipesTitle": "Recipes",
     "housekeepingTitle": "Housekeeping",
     "whiteboardTitle": "Whiteboard",
-
-    "languageLabel": "Language: ",
 
     "noRecipesMsg": "No recipes yet",
 
@@ -25,6 +25,7 @@
     "addRecipe": "Add Recipe",
     "instructionTitleLabel": "Instruction Title",
     "instructionDescriptionLabel": "Instruction Description",
+    "instructionImageLabel": "Instruction Image",
     "addIngredient": "Add Ingredient",
     "addIngredientOption": "Add Option",
     "ingrTitleLabel": "Ingredient Title",
@@ -32,11 +33,6 @@
     "ingrURLLabel": "Ingredient URL",
     "ingrImageLabel": "Ingredient Image",
     "saveInstruction": "Save",
-
-    "writeYourNote": "Write your note here",
-    "saveNote": "Save Note",
-    "noteSavedMsg": "Note saved!",
-    "noNotesMsg": "No notes yet",
 
     "waterShutOffTitle": "Water Shut Off",
     "waterShutOffSubtitle": "Learn how to shut off the water supply",
@@ -55,5 +51,30 @@
     "hvacThermostatLocationTitle": "Location",
     "hvacThermostatLocationSubtitle": "The thermostat is located in the living room, on the wall near the window.",
     "hvacTemperatureSettingsTitle": "Temperature Settings",
-    "hvacTemperatureSettingsSubtitle": "The recommended temperature settings are 18°C in the winter and 25°C in the summer."
+    "hvacTemperatureSettingsSubtitle": "The recommended temperature settings are 18°C in the winter and 25°C in the summer.",
+
+    "kitchenAppliancesTitle": "Kitchen Appliances",
+    "kitchenAppliancesSubtitle": "Appliances in the kitchen",
+    "kitchenCoffeeMakerTitle": "Coffee Maker",
+    "kitchenCoffeeMakerSubtitle": "The coffee maker is located on the kitchen counter.",
+    "kitchenCoffeeMakerInstructions": "To brew a cup of coffee, first take your preferred filter from the jar on the coffee maker. Extract the tray and position the filter inside it, then re-insert the tray. Make sure the water tank is full. \nYou just need to plug the coffee maker, press the button one time and it will start to make coffee. The machine will brew the coffee, and just press the button again when you're done to turn it off.",
+    "kitchenCounterPlugsTitle": "Counter Plugs",
+    "kitchenCounterPlugsSubtitle": "The counter plugs are located by the kitchen counter, close to the microwave.",
+    "kitchenFridgeTitle": "Fridge",
+    "kitchenFridgeSubtitle": "The fridge is located to the right of the kitchen counter.",
+    "kitchenKettleTitle": "Kettle",
+    "kitchenKettleSubtitle": "The kettle is located on the kitchen counter.",
+    "kitchenMicrowaveTitle": "Microwave",
+    "kitchenMicrowaveSubtitle": "The microwave is located on the kitchen counter.",
+    "kitchenOvenTitle": "Oven",
+    "kitchenOvenSubtitle": "The oven is located in the kitchen.",
+    "kitchenStoveTitle": "Stove",
+    "kitchenStoveSubtitle": "The stove is located on the kitchen counter.",
+    "kitchenToasterTitle": "Toaster",
+    "kitchenToasterSubtitle": "The toaster is located in the red cupboard to the right.",
+
+    "writeYourNote": "Write your note here",
+    "saveNote": "Save Note",
+    "noteSavedMsg": "Note saved!",
+    "noNotesMsg": "No notes yet"
 }

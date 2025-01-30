@@ -1,0 +1,7 @@
+{
+    "i18nJsonEditor.supportedFolders": [
+        "i18n",
+        "l10n",
+        "lib/l10n"
+    ]
+}

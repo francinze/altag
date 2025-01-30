@@ -95,6 +95,16 @@ class S {
     return Intl.message('Logout', name: 'logoutLabel', desc: '', args: []);
   }
 
+  /// `Language: `
+  String get languageLabel {
+    return Intl.message(
+      'Language: ',
+      name: 'languageLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `No user found for this username.`
   String get authUserNotFound {
     return Intl.message(
@@ -113,6 +123,11 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Recipes`
+  String get recipesTitle {
+    return Intl.message('Recipes', name: 'recipesTitle', desc: '', args: []);
   }
 
   /// `Utilities`
@@ -135,11 +150,6 @@ class S {
     );
   }
 
-  /// `Recipes`
-  String get recipesTitle {
-    return Intl.message('Recipes', name: 'recipesTitle', desc: '', args: []);
-  }
-
   /// `Housekeeping`
   String get housekeepingTitle {
     return Intl.message(
@@ -155,16 +165,6 @@ class S {
     return Intl.message(
       'Whiteboard',
       name: 'whiteboardTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Language: `
-  String get languageLabel {
-    return Intl.message(
-      'Language: ',
-      name: 'languageLabel',
       desc: '',
       args: [],
     );
@@ -210,6 +210,16 @@ class S {
     return Intl.message(
       'Instruction Description',
       name: 'instructionDescriptionLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Instruction Image`
+  String get instructionImageLabel {
+    return Intl.message(
+      'Instruction Image',
+      name: 'instructionImageLabel',
       desc: '',
       args: [],
     );
@@ -278,36 +288,6 @@ class S {
   /// `Save`
   String get saveInstruction {
     return Intl.message('Save', name: 'saveInstruction', desc: '', args: []);
-  }
-
-  /// `Write your note here`
-  String get writeYourNote {
-    return Intl.message(
-      'Write your note here',
-      name: 'writeYourNote',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Save Note`
-  String get saveNote {
-    return Intl.message('Save Note', name: 'saveNote', desc: '', args: []);
-  }
-
-  /// `Note saved!`
-  String get noteSavedMsg {
-    return Intl.message(
-      'Note saved!',
-      name: 'noteSavedMsg',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `No notes yet`
-  String get noNotesMsg {
-    return Intl.message('No notes yet', name: 'noNotesMsg', desc: '', args: []);
   }
 
   /// `Water Shut Off`
@@ -483,6 +463,216 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Kitchen Appliances`
+  String get kitchenAppliancesTitle {
+    return Intl.message(
+      'Kitchen Appliances',
+      name: 'kitchenAppliancesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Appliances in the kitchen`
+  String get kitchenAppliancesSubtitle {
+    return Intl.message(
+      'Appliances in the kitchen',
+      name: 'kitchenAppliancesSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Coffee Maker`
+  String get kitchenCoffeeMakerTitle {
+    return Intl.message(
+      'Coffee Maker',
+      name: 'kitchenCoffeeMakerTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The coffee maker is located on the kitchen counter.`
+  String get kitchenCoffeeMakerSubtitle {
+    return Intl.message(
+      'The coffee maker is located on the kitchen counter.',
+      name: 'kitchenCoffeeMakerSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To brew a cup of coffee, first take your preferred filter from the jar on the coffee maker. Extract the tray and position the filter inside it, then re-insert the tray. Make sure the water tank is full. \nYou just need to plug the coffee maker, press the button one time and it will start to make coffee. The machine will brew the coffee, and just press the button again when you're done to turn it off.`
+  String get kitchenCoffeeMakerInstructions {
+    return Intl.message(
+      'To brew a cup of coffee, first take your preferred filter from the jar on the coffee maker. Extract the tray and position the filter inside it, then re-insert the tray. Make sure the water tank is full. \nYou just need to plug the coffee maker, press the button one time and it will start to make coffee. The machine will brew the coffee, and just press the button again when you\'re done to turn it off.',
+      name: 'kitchenCoffeeMakerInstructions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Counter Plugs`
+  String get kitchenCounterPlugsTitle {
+    return Intl.message(
+      'Counter Plugs',
+      name: 'kitchenCounterPlugsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The counter plugs are located by the kitchen counter, close to the microwave.`
+  String get kitchenCounterPlugsSubtitle {
+    return Intl.message(
+      'The counter plugs are located by the kitchen counter, close to the microwave.',
+      name: 'kitchenCounterPlugsSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fridge`
+  String get kitchenFridgeTitle {
+    return Intl.message(
+      'Fridge',
+      name: 'kitchenFridgeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The fridge is located to the right of the kitchen counter.`
+  String get kitchenFridgeSubtitle {
+    return Intl.message(
+      'The fridge is located to the right of the kitchen counter.',
+      name: 'kitchenFridgeSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Kettle`
+  String get kitchenKettleTitle {
+    return Intl.message(
+      'Kettle',
+      name: 'kitchenKettleTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The kettle is located on the kitchen counter.`
+  String get kitchenKettleSubtitle {
+    return Intl.message(
+      'The kettle is located on the kitchen counter.',
+      name: 'kitchenKettleSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Microwave`
+  String get kitchenMicrowaveTitle {
+    return Intl.message(
+      'Microwave',
+      name: 'kitchenMicrowaveTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The microwave is located on the kitchen counter.`
+  String get kitchenMicrowaveSubtitle {
+    return Intl.message(
+      'The microwave is located on the kitchen counter.',
+      name: 'kitchenMicrowaveSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oven`
+  String get kitchenOvenTitle {
+    return Intl.message('Oven', name: 'kitchenOvenTitle', desc: '', args: []);
+  }
+
+  /// `The oven is located in the kitchen.`
+  String get kitchenOvenSubtitle {
+    return Intl.message(
+      'The oven is located in the kitchen.',
+      name: 'kitchenOvenSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stove`
+  String get kitchenStoveTitle {
+    return Intl.message('Stove', name: 'kitchenStoveTitle', desc: '', args: []);
+  }
+
+  /// `The stove is located on the kitchen counter.`
+  String get kitchenStoveSubtitle {
+    return Intl.message(
+      'The stove is located on the kitchen counter.',
+      name: 'kitchenStoveSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Toaster`
+  String get kitchenToasterTitle {
+    return Intl.message(
+      'Toaster',
+      name: 'kitchenToasterTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The toaster is located in the red cupboard to the right.`
+  String get kitchenToasterSubtitle {
+    return Intl.message(
+      'The toaster is located in the red cupboard to the right.',
+      name: 'kitchenToasterSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write your note here`
+  String get writeYourNote {
+    return Intl.message(
+      'Write your note here',
+      name: 'writeYourNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save Note`
+  String get saveNote {
+    return Intl.message('Save Note', name: 'saveNote', desc: '', args: []);
+  }
+
+  /// `Note saved!`
+  String get noteSavedMsg {
+    return Intl.message(
+      'Note saved!',
+      name: 'noteSavedMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No notes yet`
+  String get noNotesMsg {
+    return Intl.message('No notes yet', name: 'noNotesMsg', desc: '', args: []);
   }
 }
 

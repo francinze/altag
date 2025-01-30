@@ -5,12 +5,15 @@ class Recipe extends Instruction {
   Recipe({
     required super.title,
     required super.description,
+    super.imageUrl,
   }) : super(category: 'recipe');
 
   factory Recipe.fromFirestore(DocumentSnapshot doc) {
     Map data = doc.data() as Map;
     return Recipe(
-        title: data['title'] ?? '', description: data['description'] ?? '');
+        title: data['title'] ?? '',
+        description: data['description'] ?? '',
+        imageUrl: data['imageUrl']);
   }
 }
 

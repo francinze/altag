@@ -20,6 +20,7 @@ class _RecipePageState extends State<RecipePage> {
     final args =
         ModalRoute.of(context)!.settings.arguments as RecipePageArguments;
     final firestore = Provider.of<FirestoreService>(context);
+    final auth = Provider.of<HouseAuthProvider>(context);
     return StreamBuilder<Map<String, List<Ingredient>>>(
         stream: firestore.getIngredientsByRecipe(args.id),
         builder: (context, snapshot) {
@@ -31,7 +32,7 @@ class _RecipePageState extends State<RecipePage> {
             appBar: AppBar(
               title: Text(args.recipe.title),
               actions: [
-                if (Provider.of<HouseAuthProvider>(context).user != null)
+                if (auth.user != null)
                   IconButton(
                       onPressed: () async {
                         final (
@@ -57,6 +58,9 @@ class _RecipePageState extends State<RecipePage> {
             body: SingleChildScrollView(
               child: Column(
                 children: [
+                  if (args.recipe.imageUrl != null)
+                    Image.asset('assets/recipes/${args.recipe.imageUrl!}',
+                        width: 300, height: 300, fit: BoxFit.contain),
                   SizedBox(
                       width: double.infinity,
                       child: Text(args.recipe.description)),

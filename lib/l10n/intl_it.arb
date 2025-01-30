@@ -8,6 +8,8 @@
     "settingsTitle": "Impostazioni",
     "logoutLabel": "Logout",
 
+    "languageLabel": "Lingua: ",
+
     "authUserNotFound": "Nessun utente trovato per questo nome utente.",
     "authLogoutFailed": "Impossibile effettuare il logout: ",
 
@@ -17,14 +19,13 @@
     "housekeepingTitle": "Lavori di casa",
     "whiteboardTitle": "Lavagna",
 
-    "languageLabel": "Lingua: ",
-
     "noRecipesMsg": "Nessuna ricetta",
 
     "addInstruction": "Aggiungi istruzione",
     "addRecipe": "Aggiungi ricetta",
     "instructionTitleLabel": "Titolo istruzione",
     "instructionDescriptionLabel": "Descrizione istruzione",
+    "instructionImageLabel": "Immagine istruzione",
     "addIngredient": "Aggiungi ingrediente",
     "addIngredientOption": "Aggiungi opzione",
     "ingrTitleLabel": "Titolo ingrediente",
@@ -32,11 +33,6 @@
     "ingrURLLabel": "URL ingrediente",
     "ingrImageLabel": "Immagine ingrediente",
     "saveInstruction": "Salva",
-
-    "writeYourNote": "Scrivi la tua nota qui",
-    "saveNote": "Salva nota",
-    "noteSavedMsg": "Nota salvata!",
-    "noNotesMsg": "Nessuna nota",
 
     "waterShutOffTitle": "Chiusura dell'acqua",
     "waterShutOffSubtitle": "Come spegnere l'acqua",
@@ -55,5 +51,30 @@
     "hvacThermostatLocationTitle": "Posizione del termostato",
     "hvacThermostatLocationSubtitle": "Il termostato è situato nella stanza, sulla parete vicino alla finestra.",
     "hvacTemperatureSettingsTitle": "Impostazioni di temperatura",
-    "hvacTemperatureSettingsSubtitle": "Le impostazioni di temperatura raccomandate sono 18°C in inverno e 25°C in estate."
+    "hvacTemperatureSettingsSubtitle": "Le impostazioni di temperatura raccomandate sono 18°C in inverno e 25°C in estate.",
+
+    "kitchenAppliancesTitle": "Cucina",
+    "kitchenAppliancesSubtitle": "Elettrodomestici nella cucina",
+    "kitchenCoffeeMakerTitle": "Caffettiera",
+    "kitchenCoffeeMakerSubtitle": "La caffettiera è situata sul bancone nella cucina.",
+    "kitchenCoffeeMakerInstructions": "Per fare un caffè, prendere una capsula dal barattolo sulla caffettiera. Estrarre il supporto dalla caffettiera, inserire il filtro e rimettere il supporto. Controllare che l'acqua della caffettiera non sia vuota. \nAttaccare la presa e premere una volta il pulsante. Il caffé comincerà ad essere erogato, per farlo smettere premere di nuovo il pulsante.",
+    "kitchenCounterPlugsTitle": "Prese del bancone",
+    "kitchenCounterPlugsSubtitle": "Le prese del bancone sono situate sul bancone nella cucina, a destra del microonde.",
+    "kitchenFridgeTitle": "Frigorifero",
+    "kitchenFridgeSubtitle": "Il Frigorifero è situato a destra del bancone della cucina.",
+    "kitchenKettleTitle": "Bollitore",
+    "kitchenKettleSubtitle": "Il bollitore è situato sul bancone nella cucina.",
+    "kitchenMicrowaveTitle": "Microonde",
+    "kitchenMicrowaveSubtitle": "Il microonde è situato sul bancone nella cucina.",
+    "kitchenOvenTitle": "Forno",
+    "kitchenOvenSubtitle": "Il forno è situato nella cucina, sotto i fornelli.",
+    "kitchenStoveTitle": "Fornelli",
+    "kitchenStoveSubtitle": "I fornelli sono situati sul bancone nella cucina.",
+    "kitchenToasterTitle": "Tostapane",
+    "kitchenToasterSubtitle": "Il tostapane è situato nella credenza rossa sul lato destro della cucina.",
+
+    "writeYourNote": "Scrivi la tua nota qui",
+    "saveNote": "Salva nota",
+    "noteSavedMsg": "Nota salvata!",
+    "noNotesMsg": "Nessuna nota"
 }

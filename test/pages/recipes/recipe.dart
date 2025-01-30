@@ -1,4 +1,5 @@
 // test/pages/recipes/recipe_test.dart
+import 'package:altag/generated/l10n.dart';
 import 'package:altag/models/recipe.dart';
 import 'package:altag/widgets/ingredient_tile.dart';
 import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
@@ -110,6 +111,63 @@ void main() {
       expect(find.text('Test Recipe'), findsOneWidget);
       expect(find.text('Test Description'), findsOneWidget);
       expect(find.byType(IngredientTile), findsWidgets);
+    });
+
+    testWidgets(
+        'IconButton opens AddInstructionSheet and returns updated recipe',
+        (tester) async {
+      await auth.signInAnonymously();
+      await tester.pumpWidget(MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => authService),
+          ChangeNotifierProvider(create: (_) => service),
+        ],
+        child: MaterialApp(
+          routes: {'/recipe': (context) => const RecipePage()},
+          initialRoute: '/recipe',
+          localizationsDelegates: const [S.delegate],
+          onGenerateInitialRoutes: (initialRoute) {
+            return [
+              MaterialPageRoute(
+                settings: RouteSettings(
+                    name: '/recipe',
+                    arguments: RecipePageArguments(recipeId, recipe)),
+                builder: (context) => const RecipePage(),
+              ),
+            ];
+          },
+        ),
+      ));
+
+      await tester.pumpAndSettle();
+      // Find the IconButton
+      final iconButton = find.byType(IconButton);
+
+      // Tap the IconButton
+      await tester.tap(iconButton);
+      await tester.pumpAndSettle();
+      // Verify that the AddInstructionSheet is opened
+      expect(find.textContaining('Add '), findsWidgets);
+
+      // Fill in the fields
+      await tester.enterText(find.byType(TextField).first, 'New Title');
+      await tester.enterText(find.byType(TextField).at(1), 'New Description');
+
+      // Close with arguments
+      await tester.tap(find.byType(ElevatedButton).last);
+
+      // Verify that the AddInstructionSheet is closed
+      expect(find.textContaining('New Title'), findsWidgets);
+
+      // Verify that the instruction was updated
+      final updatedInstruction =
+          await firestore.collection('instructions').doc(recipeId).get();
+      expect(updatedInstruction.data(), {
+        'title': 'New Title',
+        'description': 'New Description',
+        'category': 'recipe',
+        'imageUrl': null
+      });
     });
   });
 }

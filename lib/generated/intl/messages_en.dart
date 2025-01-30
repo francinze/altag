@@ -66,9 +66,57 @@ class MessageLookup extends MessageLookupByLibrary {
     "instructionDescriptionLabel": MessageLookupByLibrary.simpleMessage(
       "Instruction Description",
     ),
+    "instructionImageLabel": MessageLookupByLibrary.simpleMessage(
+      "Instruction Image",
+    ),
     "instructionTitleLabel": MessageLookupByLibrary.simpleMessage(
       "Instruction Title",
     ),
+    "kitchenAppliancesSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Appliances in the kitchen",
+    ),
+    "kitchenAppliancesTitle": MessageLookupByLibrary.simpleMessage(
+      "Kitchen Appliances",
+    ),
+    "kitchenCoffeeMakerInstructions": MessageLookupByLibrary.simpleMessage(
+      "To brew a cup of coffee, first take your preferred filter from the jar on the coffee maker. Extract the tray and position the filter inside it, then re-insert the tray. Make sure the water tank is full. \nYou just need to plug the coffee maker, press the button one time and it will start to make coffee. The machine will brew the coffee, and just press the button again when you\'re done to turn it off.",
+    ),
+    "kitchenCoffeeMakerSubtitle": MessageLookupByLibrary.simpleMessage(
+      "The coffee maker is located on the kitchen counter.",
+    ),
+    "kitchenCoffeeMakerTitle": MessageLookupByLibrary.simpleMessage(
+      "Coffee Maker",
+    ),
+    "kitchenCounterPlugsSubtitle": MessageLookupByLibrary.simpleMessage(
+      "The counter plugs are located by the kitchen counter, close to the microwave.",
+    ),
+    "kitchenCounterPlugsTitle": MessageLookupByLibrary.simpleMessage(
+      "Counter Plugs",
+    ),
+    "kitchenFridgeSubtitle": MessageLookupByLibrary.simpleMessage(
+      "The fridge is located to the right of the kitchen counter.",
+    ),
+    "kitchenFridgeTitle": MessageLookupByLibrary.simpleMessage("Fridge"),
+    "kitchenKettleSubtitle": MessageLookupByLibrary.simpleMessage(
+      "The kettle is located on the kitchen counter.",
+    ),
+    "kitchenKettleTitle": MessageLookupByLibrary.simpleMessage("Kettle"),
+    "kitchenMicrowaveSubtitle": MessageLookupByLibrary.simpleMessage(
+      "The microwave is located on the kitchen counter.",
+    ),
+    "kitchenMicrowaveTitle": MessageLookupByLibrary.simpleMessage("Microwave"),
+    "kitchenOvenSubtitle": MessageLookupByLibrary.simpleMessage(
+      "The oven is located in the kitchen.",
+    ),
+    "kitchenOvenTitle": MessageLookupByLibrary.simpleMessage("Oven"),
+    "kitchenStoveSubtitle": MessageLookupByLibrary.simpleMessage(
+      "The stove is located on the kitchen counter.",
+    ),
+    "kitchenStoveTitle": MessageLookupByLibrary.simpleMessage("Stove"),
+    "kitchenToasterSubtitle": MessageLookupByLibrary.simpleMessage(
+      "The toaster is located in the red cupboard to the right.",
+    ),
+    "kitchenToasterTitle": MessageLookupByLibrary.simpleMessage("Toaster"),
     "languageLabel": MessageLookupByLibrary.simpleMessage("Language: "),
     "logoutLabel": MessageLookupByLibrary.simpleMessage("Logout"),
     "noNotesMsg": MessageLookupByLibrary.simpleMessage("No notes yet"),
