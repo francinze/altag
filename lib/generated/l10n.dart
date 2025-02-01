@@ -536,13 +536,8 @@ class S {
   }
 
   /// `Plug`
-  String get kitchenCoffeeMakerPlugLabel {
-    return Intl.message(
-      'Plug',
-      name: 'kitchenCoffeeMakerPlugLabel',
-      desc: '',
-      args: [],
-    );
+  String get plugLabel {
+    return Intl.message('Plug', name: 'plugLabel', desc: '', args: []);
   }
 
   /// `Tray`
@@ -620,6 +615,36 @@ class S {
     return Intl.message(
       'The kettle is located on the kitchen counter.',
       name: 'kitchenKettleSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To open the kettle, press the button. To seal it back, simply press the lid until it clicks. To boil water, first plug the kettle and turn the kettle on by pressing the handle down. If it clicks and it lights up orange, the kettle is on. Turn it off when you're done by lifting the handle up.`
+  String get kitchenKettleInstructions {
+    return Intl.message(
+      'To open the kettle, press the button. To seal it back, simply press the lid until it clicks. To boil water, first plug the kettle and turn the kettle on by pressing the handle down. If it clicks and it lights up orange, the kettle is on. Turn it off when you\'re done by lifting the handle up.',
+      name: 'kitchenKettleInstructions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Button`
+  String get kitchenKettleButtonLabel {
+    return Intl.message(
+      'Button',
+      name: 'kitchenKettleButtonLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Handle`
+  String get kitchenKettleHandleLabel {
+    return Intl.message(
+      'Handle',
+      name: 'kitchenKettleHandleLabel',
       desc: '',
       args: [],
     );

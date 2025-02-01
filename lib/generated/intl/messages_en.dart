@@ -85,7 +85,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "To brew a cup of coffee, first take your preferred filter from the jar on the coffee maker. Extract the tray and position the filter inside it, then re-insert the tray. Make sure the water tank is full. \nYou just need to plug the coffee maker, press the button one time and it will start to make coffee. The machine will brew the coffee, and just press the button again when you\'re done to turn it off.",
     ),
     "kitchenCoffeeMakerJarLabel": MessageLookupByLibrary.simpleMessage("Jar"),
-    "kitchenCoffeeMakerPlugLabel": MessageLookupByLibrary.simpleMessage("Plug"),
     "kitchenCoffeeMakerSubtitle": MessageLookupByLibrary.simpleMessage(
       "The coffee maker is located on the kitchen counter.",
     ),
@@ -106,6 +105,11 @@ class MessageLookup extends MessageLookupByLibrary {
       "The fridge is located to the right of the kitchen counter.",
     ),
     "kitchenFridgeTitle": MessageLookupByLibrary.simpleMessage("Fridge"),
+    "kitchenKettleButtonLabel": MessageLookupByLibrary.simpleMessage("Button"),
+    "kitchenKettleHandleLabel": MessageLookupByLibrary.simpleMessage("Handle"),
+    "kitchenKettleInstructions": MessageLookupByLibrary.simpleMessage(
+      "To open the kettle, press the button. To seal it back, simply press the lid until it clicks. To boil water, first plug the kettle and turn the kettle on by pressing the handle down. If it clicks and it lights up orange, the kettle is on. Turn it off when you\'re done by lifting the handle up.",
+    ),
     "kitchenKettleSubtitle": MessageLookupByLibrary.simpleMessage(
       "The kettle is located on the kitchen counter.",
     ),
@@ -131,6 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noNotesMsg": MessageLookupByLibrary.simpleMessage("No notes yet"),
     "noRecipesMsg": MessageLookupByLibrary.simpleMessage("No recipes yet"),
     "noteSavedMsg": MessageLookupByLibrary.simpleMessage("Note saved!"),
+    "plugLabel": MessageLookupByLibrary.simpleMessage("Plug"),
     "powerOutageSafetyPrecautionsSubtitle": MessageLookupByLibrary.simpleMessage(
       "Avoid using candles or open flames, as they can be a fire hazard. Use flashlights or battery-powered lanterns instead.",
     ),

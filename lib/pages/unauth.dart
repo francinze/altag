@@ -44,13 +44,16 @@ class UnauthenticatedPage extends StatelessWidget {
                   await loginUser(userNameController.text, firestore);
                 } on FirebaseAuthException catch (e) {
                   if (e.code == 'user-not-found') {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(S.of(context).authUserNotFound)),
-                    );
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(S.of(context).authUserNotFound)),
+                      );
+                    }
                   }
                 }
-                await loginUser(userNameController.text, firestore);
-                Navigator.pop(context);
+                if (context.mounted) {
+                  Navigator.pop(context);
+                }
               },
               child: const Text('Login'),
             ),

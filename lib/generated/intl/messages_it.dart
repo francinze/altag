@@ -95,9 +95,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "kitchenCoffeeMakerJarLabel": MessageLookupByLibrary.simpleMessage(
       "Barattolo",
     ),
-    "kitchenCoffeeMakerPlugLabel": MessageLookupByLibrary.simpleMessage(
-      "Presa",
-    ),
     "kitchenCoffeeMakerSubtitle": MessageLookupByLibrary.simpleMessage(
       "La caffettiera è situata sul bancone nella cucina.",
     ),
@@ -120,6 +117,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Il Frigorifero è situato a destra del bancone della cucina.",
     ),
     "kitchenFridgeTitle": MessageLookupByLibrary.simpleMessage("Frigorifero"),
+    "kitchenKettleButtonLabel": MessageLookupByLibrary.simpleMessage(
+      "Pulsante",
+    ),
+    "kitchenKettleHandleLabel": MessageLookupByLibrary.simpleMessage("Tasto"),
     "kitchenKettleSubtitle": MessageLookupByLibrary.simpleMessage(
       "Il bollitore è situato sul bancone nella cucina.",
     ),
@@ -145,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noNotesMsg": MessageLookupByLibrary.simpleMessage("Nessuna nota"),
     "noRecipesMsg": MessageLookupByLibrary.simpleMessage("Nessuna ricetta"),
     "noteSavedMsg": MessageLookupByLibrary.simpleMessage("Nota salvata!"),
+    "plugLabel": MessageLookupByLibrary.simpleMessage("Presa"),
     "powerOutageSafetyPrecautionsSubtitle": MessageLookupByLibrary.simpleMessage(
       "Evitare di usare candele o fiamme, poiché possono essere un pericolo di incendio. Usare luci da batteria o luci da batteria per evitare di usare candele o fiamme.",
     ),

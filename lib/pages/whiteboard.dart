@@ -38,9 +38,11 @@ class WhiteboardPageState extends State<WhiteboardPage> {
                 if (note.isNotEmpty) {
                   await _dbRef.push().set({'note': note});
                   _controller.clear();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(s.noteSavedMsg)),
-                  );
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(s.noteSavedMsg)),
+                    );
+                  }
                 }
               },
               child: Text(s.saveNote),

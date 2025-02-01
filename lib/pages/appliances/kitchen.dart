@@ -1,4 +1,5 @@
 import 'package:altag/pages/appliances/coffee_maker.dart';
+import 'package:altag/pages/appliances/kettle.dart';
 import 'package:flutter/material.dart';
 
 import '../../generated/l10n.dart';
@@ -37,11 +38,14 @@ class KitchenAppliancesPage extends StatelessWidget {
           trailing: const Icon(Icons.arrow_forward_ios),
         ),
         ListTile(
-          leading: const Icon(Icons.h_mobiledata),
-          title: Text(s.kitchenKettleTitle),
-          subtitle: Text(s.kitchenKettleSubtitle),
-          trailing: const Icon(Icons.arrow_forward_ios),
-        ),
+            leading: const Icon(Icons.h_mobiledata),
+            title: Text(s.kitchenKettleTitle),
+            subtitle: Text(s.kitchenKettleSubtitle),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const KettlePage()),
+                )),
         ListTile(
           leading: const Icon(Icons.breakfast_dining),
           title: Text(s.kitchenToasterTitle),

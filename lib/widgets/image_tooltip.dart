@@ -9,8 +9,8 @@ class ImageTooltip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-        top: top,
-        left: left,
+        top: MediaQuery.of(context).size.height * top,
+        left: MediaQuery.of(context).size.width * left,
         child: Material(
           color: Colors.red,
           shape: const CircleBorder(
