@@ -23,35 +23,33 @@ class _HomePageState extends State<HomePage> {
     const SettingsPage(),
   ];
   @override
-  Widget build(BuildContext context) {
-    final auth = Provider.of<HouseAuthProvider>(context);
-    return Scaffold(
-      appBar: AppBar(title: const Text('AltaGuardiaHub')),
-      floatingActionButton: auth.user == null
-          ? FloatingActionButton.extended(
-              onPressed: () => Navigator.pushNamed(context, '/unauth'),
-              label: const Text('Login'),
-              icon: const Icon(Icons.login),
-            )
-          : null,
-      body: Row(
-        children: [
-          NavigationRail(
-            selectedIndex: selectedIndex,
-            onDestinationSelected: onPageSelected,
-            labelType: NavigationRailLabelType.all,
-            destinations: const [
-              NavigationRailDestination(
-                  icon: Icon(Icons.home), label: SizedBox()),
-              NavigationRailDestination(
-                  icon: Icon(Icons.search), label: SizedBox()),
-              NavigationRailDestination(
-                  icon: Icon(Icons.settings), label: SizedBox()),
-            ],
-          ),
-          Expanded(child: pages[selectedIndex]),
-        ],
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(title: const Text('AltaGuardiaHub')),
+        floatingActionButton:
+            !Provider.of<HouseAuthProvider>(context).isLoggedIn
+                ? FloatingActionButton.extended(
+                    onPressed: () => Navigator.pushNamed(context, '/unauth'),
+                    label: const Text('Login'),
+                    icon: const Icon(Icons.login),
+                  )
+                : null,
+        body: Row(
+          children: [
+            NavigationRail(
+              selectedIndex: selectedIndex,
+              onDestinationSelected: onPageSelected,
+              labelType: NavigationRailLabelType.all,
+              destinations: const [
+                NavigationRailDestination(
+                    icon: Icon(Icons.home), label: SizedBox()),
+                NavigationRailDestination(
+                    icon: Icon(Icons.search), label: SizedBox()),
+                NavigationRailDestination(
+                    icon: Icon(Icons.settings), label: SizedBox()),
+              ],
+            ),
+            Expanded(child: pages[selectedIndex]),
+          ],
+        ),
+      );
 }

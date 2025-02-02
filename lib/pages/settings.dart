@@ -35,7 +35,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ],
         ),
         const Divider(),
-        if (authProvider.user != null)
+        if (authProvider.isLoggedIn)
           ElevatedButton(
               onPressed: () {
                 try {

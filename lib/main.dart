@@ -4,6 +4,7 @@ import 'package:altag/providers/firestore_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -11,6 +12,7 @@ import 'generated/l10n.dart';
 import 'pages/appliances/appliances.dart';
 import 'pages/appliances/kitchen.dart';
 import 'pages/home.dart';
+import 'pages/housekeeping/hub.dart';
 import 'pages/recipes/ingredient.dart';
 import 'pages/recipes/recipe.dart';
 import 'pages/recipes/recipes.dart';
@@ -23,6 +25,8 @@ import 'pages/whiteboard.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('authBox');
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(
@@ -79,5 +83,6 @@ class _HouseInstructionsAppState extends State<HouseInstructionsApp> {
         '/ingredient': (context) => const IngredientPage(),
         '/appliances': (context) => const AppliancesPage(),
         '/kitchen': (context) => const KitchenAppliancesPage(),
+        '/housekeeping': (context) => const HousekeepingHubPage(),
       });
 }

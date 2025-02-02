@@ -20,7 +20,6 @@ class _RecipePageState extends State<RecipePage> {
     final args =
         ModalRoute.of(context)!.settings.arguments as RecipePageArguments;
     final firestore = Provider.of<FirestoreService>(context);
-    final auth = Provider.of<HouseAuthProvider>(context);
     return StreamBuilder<Map<String, List<Ingredient>>>(
         stream: firestore.getIngredientsByRecipe(args.id),
         builder: (context, snapshot) {
@@ -32,7 +31,7 @@ class _RecipePageState extends State<RecipePage> {
             appBar: AppBar(
               title: Text(args.recipe.title),
               actions: [
-                if (auth.user != null)
+                if (Provider.of<HouseAuthProvider>(context).isLoggedIn)
                   IconButton(
                       onPressed: () async {
                         final (

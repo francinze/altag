@@ -159,4 +159,18 @@ class FirestoreService extends ChangeNotifier {
       });
     }
   }
+
+  Stream<List<DocumentSnapshot>> getTasksForWeek(
+      String weekDocId, String userName) {
+    final firestore = FirebaseFirestore.instance;
+    final fixedTasksRef = firestore
+        .collection('housekeepingSchedules')
+        .doc(weekDocId)
+        .collection('chores');
+
+    return fixedTasksRef
+        .where('assignedTo', isEqualTo: userName)
+        .snapshots()
+        .map((snapshot) => snapshot.docs);
+  }
 }

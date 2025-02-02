@@ -19,65 +19,62 @@ class IngredientTile extends StatefulWidget {
 class _IngredientTileState extends State<IngredientTile> {
   bool showEdit = false;
   @override
-  Widget build(BuildContext context) {
-    final isAuth = Provider.of<HouseAuthProvider>(context).user != null;
-    return InkWell(
-      onHover: (hover) {
-        if (hover && isAuth) {
-          setState(() => showEdit = true);
-        } else {
-          setState(() => showEdit = false);
-        }
-      },
-      onTap: () => Navigator.pushNamed(context, '/ingredient',
-          arguments: widget.i.value),
-      child: SizedBox(
-        width: 200,
-        child: Stack(
-          children: [
-            Center(
-              child: Column(
-                children: [
-                  Text(
-                    widget.i.value.name,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    widget.i.value.description,
-                    textAlign: TextAlign.center,
-                  ),
-                  TextButton(
-                      onPressed: () =>
-                          launchUrlString(widget.i.value.productUrl),
-                      child: const Text('LINK')),
-                  if (widget.i.value.imageUrl != null)
-                    Image.asset(
-                        'assets/ingredients/${widget.i.value.imageUrl!}',
-                        width: 100,
-                        height: 100),
-                ],
-              ),
-            ),
-            if (showEdit)
-              Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  onPressed: () async {
-                    final Ingredient? ingr = await showModalBottomSheet(
-                        context: context,
-                        builder: (context) =>
-                            AddIngredientSheet(ingredient: widget.i.value));
-                    if (ingr != null) {
-                      widget.updateIngredient(ingr);
-                    }
-                  },
-                  icon: const Icon(Icons.edit),
+  Widget build(BuildContext context) => InkWell(
+        onHover: (hover) {
+          if (hover && Provider.of<HouseAuthProvider>(context).isLoggedIn) {
+            setState(() => showEdit = true);
+          } else {
+            setState(() => showEdit = false);
+          }
+        },
+        onTap: () => Navigator.pushNamed(context, '/ingredient',
+            arguments: widget.i.value),
+        child: SizedBox(
+          width: 200,
+          child: Stack(
+            children: [
+              Center(
+                child: Column(
+                  children: [
+                    Text(
+                      widget.i.value.name,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      widget.i.value.description,
+                      textAlign: TextAlign.center,
+                    ),
+                    TextButton(
+                        onPressed: () =>
+                            launchUrlString(widget.i.value.productUrl),
+                        child: const Text('LINK')),
+                    if (widget.i.value.imageUrl != null)
+                      Image.asset(
+                          'assets/ingredients/${widget.i.value.imageUrl!}',
+                          width: 100,
+                          height: 100),
+                  ],
                 ),
               ),
-          ],
+              if (showEdit)
+                Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    onPressed: () async {
+                      final Ingredient? ingr = await showModalBottomSheet(
+                          context: context,
+                          builder: (context) =>
+                              AddIngredientSheet(ingredient: widget.i.value));
+                      if (ingr != null) {
+                        widget.updateIngredient(ingr);
+                      }
+                    },
+                    icon: const Icon(Icons.edit),
+                  ),
+                ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
