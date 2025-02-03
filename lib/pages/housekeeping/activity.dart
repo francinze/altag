@@ -57,6 +57,16 @@ class ActivityDetailsPageState extends State<ActivityDetailsPage> {
     await widget.taskRef.update({'additionalSubtasks': additionalSubtasks});
   }
 
+  /// Toggle a subtask's done state and update Firestore.
+  Future<void> toggleAllAdditionalSubtasks() async {
+    setState(() {
+      for (var subtask in additionalSubtasks!) {
+        subtask['done'] = !subtask['done'];
+      }
+    });
+    await widget.taskRef.update({'additionalSubtasks': additionalSubtasks});
+  }
+
   /// Check if all subtasks are completed.
   bool allSubtasksDone() {
     return subtasks.every((sub) => sub['done'] == true) &&
@@ -90,9 +100,24 @@ class ActivityDetailsPageState extends State<ActivityDetailsPage> {
             ),
             if (additionalSubtasks != null) ...[
               const SizedBox(height: 16),
-              Text(widget.taskData['name']!.startsWith('Pulizia post')
-                  ? "Se stai mangiando per ultimo:"
-                  : ""),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(widget.taskData['name']!.startsWith('Pulizia post')
+                      ? "Se stai mangiando per ultimo:"
+                      : ""),
+                  if (!additionalSubtasks!.every((sub) => sub['done'] == true))
+                    IconButton(
+                        onPressed: toggleAllAdditionalSubtasks,
+                        icon: Icon(
+                          Icons.block,
+                          color: additionalSubtasks!
+                                  .every((sub) => sub['done'] == true)
+                              ? Colors.grey
+                              : Colors.red,
+                        ))
+                ],
+              ),
               Expanded(
                 child: ListView.builder(
                   itemCount: additionalSubtasks!.length,
