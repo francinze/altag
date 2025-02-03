@@ -1,4 +1,4 @@
-name: Deploy Flutter Web to Firebase Hosting
+name: Add coverage for current tests
 
 on:
   push:
