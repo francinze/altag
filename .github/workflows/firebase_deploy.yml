@@ -38,6 +38,9 @@ jobs:
         run: |
           echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > $HOME/firebase-key.json
           export GOOGLE_APPLICATION_CREDENTIALS="$HOME/firebase-key.json"
+      
+      - name: Initialize Firebase Project
+        run: firebase use altag
 
       - name: Deploy to Firebase Hosting
         run: firebase deploy --only hosting
