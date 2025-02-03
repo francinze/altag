@@ -1,5 +1,6 @@
 import 'package:altag/pages/housekeeping/activity.dart';
 import 'package:altag/pages/housekeeping/plan.dart';
+import 'package:altag/pages/housekeeping/utils.dart';
 import 'package:altag/pages/unauth.dart';
 import 'package:altag/providers/firestore_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,63 +10,13 @@ import 'package:provider/provider.dart';
 import '../../providers/auth.dart';
 import '../../widgets/activity_tile.dart';
 
-// Helper functions to compute the week document IDs, assuming Monday is the starting day.
-DateTime getCurrentWeekMonday() {
-  final now = DateTime.now();
-  // In Dart, Monday is weekday 1.
-  final int daysSinceMonday = now.weekday - 1;
-  return DateTime(now.year, now.month, now.day)
-      .subtract(Duration(days: daysSinceMonday));
-}
-
-DateTime getNextWeekMonday() {
-  final currentMonday = getCurrentWeekMonday();
-  return currentMonday.add(const Duration(days: 7));
-}
-
-String getWeekDocId(DateTime monday) {
-  return "${monday.year}-${monday.month.toString().padLeft(2, '0')}-${monday.day.toString().padLeft(2, '0')}";
-}
-
-int getDayIndex(String day) {
-  const daysOrder = {
-    'Monday': 0,
-    'Tuesday': 1,
-    'Wednesday': 2,
-    'Thursday': 3,
-    'Friday': 4,
-    'Saturday': 5,
-    'Sunday': 6,
-  };
-  return daysOrder[day] ?? 7; // Default to the end if invalid
-}
-
-int getTimeSlotPriority(String timeSlot) {
-  const timeOrder = {
-    'morning': 0,
-    'afternoon': 1,
-    'evening': 2,
-  };
-  return timeOrder[timeSlot] ?? 5; // Default to the end if invalid
-}
-
-final List<String> _days = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Sunday'
-];
-
 List<DocumentSnapshot> sortActivities(List<DocumentSnapshot> activities) {
   activities.sort((a, b) {
     final dataA = a.data() as Map<String, dynamic>;
     final dataB = b.data() as Map<String, dynamic>;
 
-    final dayIndexA = getDayIndex(dataA['day'] ?? '');
-    final dayIndexB = getDayIndex(dataB['day'] ?? '');
+    final dayIndexA = days.indexOf(dataA['day'] ?? '');
+    final dayIndexB = days.indexOf(dataB['day'] ?? '');
 
     // First, sort by day
     if (dayIndexA != dayIndexB) {
@@ -73,10 +24,8 @@ List<DocumentSnapshot> sortActivities(List<DocumentSnapshot> activities) {
     }
 
     // If same day, sort by time slot priority
-    final timeSlotA = dataA['timeSlot'] ?? '';
-    final timeSlotB = dataB['timeSlot'] ?? '';
-    final timePriorityA = getTimeSlotPriority(timeSlotA);
-    final timePriorityB = getTimeSlotPriority(timeSlotB);
+    final timePriorityA = timeslots.indexOf(dataA['timeslot'] ?? '');
+    final timePriorityB = timeslots.indexOf(dataB['timeslot'] ?? '');
 
     return timePriorityA.compareTo(timePriorityB);
   });
@@ -138,12 +87,12 @@ class HousekeepingHubPage extends StatelessWidget {
       ),
       // Optional: FAB for planning next week's tasks.
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () =>
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const PlanNextWeekPage();
-        })),
+        onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const PlanActivitiesPage())),
         icon: const Icon(Icons.edit_calendar),
-        label: const Text("Plan Next Week"),
+        label: const Text("Plan Activities"),
       ),
     );
   }
@@ -163,44 +112,46 @@ class HousekeepingHubPage extends StatelessWidget {
 /// headline.
 ///
 /// The [taskStream] parameter is the stream of tasks.
-Widget _buildTaskList(String title, Stream<List<DocumentSnapshot>> taskStream) {
-  return Center(
-    child: Column(
-      children: [
-        Text(title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-        StreamBuilder<List<DocumentSnapshot>>(
-          stream: taskStream,
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) return const CircularProgressIndicator();
-            final tasks = snapshot.data!;
-            if (tasks.isEmpty) {
-              return const Padding(
-                  padding: EdgeInsets.all(8.0), child: Text("No tasks."));
-            }
-            tasks.removeWhere((task) =>
-                _days.indexOf(task['day']) < DateTime.now().weekday - 1 &&
-                title == "Current Week Tasks");
-            final sortedTasks = sortActivities(tasks);
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: sortedTasks.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
-                  itemBuilder: (context, index) => ActivityTile(
-                    taskDoc: sortedTasks[index],
-                    taskData: sortedTasks[index].data() as Map<String, dynamic>,
+Widget _buildTaskList(
+        String title, Stream<List<DocumentSnapshot>> taskStream) =>
+    Center(
+      child: Column(
+        children: [
+          Text(title,
+              style:
+                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+          StreamBuilder<List<DocumentSnapshot>>(
+            stream: taskStream,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return const CircularProgressIndicator();
+              final tasks = snapshot.data!;
+              if (tasks.isEmpty) {
+                return const Padding(
+                    padding: EdgeInsets.all(8.0), child: Text("No tasks."));
+              }
+              tasks.removeWhere((task) =>
+                  days.indexOf(task['day']) < DateTime.now().weekday - 1 &&
+                  title == "Current Week Tasks");
+              final sortedTasks = sortActivities(tasks);
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 8),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: sortedTasks.length,
+                    separatorBuilder: (_, __) => const SizedBox(height: 8),
+                    itemBuilder: (context, index) => ActivityTile(
+                      taskDoc: sortedTasks[index],
+                      taskData:
+                          sortedTasks[index].data() as Map<String, dynamic>,
+                    ),
                   ),
-                ),
-              ],
-            );
-          },
-        ),
-      ],
-    ),
-  );
-}
+                ],
+              );
+            },
+          ),
+        ],
+      ),
+    );

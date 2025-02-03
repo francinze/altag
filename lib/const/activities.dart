@@ -1,85 +1,61 @@
-enum ActivityFrequency {
-  everyMeal,
-  oneAfterMeal,
-  weekly,
-}
-
-class Activity {
-  final String name;
-  final List<Subtask> subtasks;
-  final ActivityFrequency frequency;
-
-  const Activity({
-    required this.name,
-    required this.subtasks,
-    required this.frequency,
-  });
-
-  factory Activity.fromJson(Map<String, dynamic> json) {
-    return Activity(
-      name: json['name'],
-      subtasks: json['subtasks']
-          .map<Subtask>((subtask) => Subtask(name: subtask['name']))
-          .toList(),
-      frequency: ActivityFrequency.values[json['frequency']],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'subtasks': subtasks.map((subtask) => subtask.toJson()).toList(),
-      'frequency': frequency.index,
-    };
-  }
-}
-
-class Subtask {
-  final String name;
-  final String user;
-
-  const Subtask({required this.name, this.user = 'Everyone'});
-
-  Map<String, dynamic> toJson() => {'name': name, 'user': user};
-}
-
 // Hardcoded activities list
-const List<Activity> activities = [
-  // Activity done by everyone after every meal
-  Activity(
-    name: 'Pulizia post pasto',
-    subtasks: [
-      Subtask(name: 'Check Vestiti'),
-      Subtask(name: 'Svuota briciole'),
-      Subtask(name: 'Pulizia banco'),
-      Subtask(name: 'Pulizia piano induzione'),
-      Subtask(name: 'Pulizia tavolo'),
-      Subtask(name: 'Piatti in lavastoviglie'),
-      Subtask(name: 'Panno nero per induzione'),
-      Subtask(name: 'Vitamine', user: 'Gabriele'),
-      Subtask(name: 'Stretching', user: 'Francesco'),
-    ],
-    frequency: ActivityFrequency.everyMeal,
-  ),
-  // Activity done once per meal (by one person) after dinner
-  Activity(
-    name: 'Pulizia cucina Turnata',
-    subtasks: [
-      Subtask(name: 'Avvia Lavastoviglie'),
-      Subtask(name: 'Check vetro'),
-      Subtask(name: 'Check indifferenziato'),
-      Subtask(name: 'Check organico'),
-      Subtask(name: 'Pezza su bidoni'),
-      Subtask(name: 'Passata aspirapolvere'),
-      Subtask(name: 'Mettere pezze e tovaglie sporche in lavatrice'),
-      Subtask(name: 'Svuota lavastoviglie pulita'),
-      Subtask(name: 'Metti aspirapolvere in carica'),
-      Subtask(name: 'Riordina aspirapolvere carico'),
-      Subtask(name: 'Liberare pavimenti'),
-    ],
-    frequency: ActivityFrequency.oneAfterMeal,
-  ),
-  Activity(
+import '../models/activity.dart';
+
+const Map<String, Activity> activities = {
+  'post_pranzo': Activity(
+      name: 'Pulizia post pranzo',
+      subtasks: [
+        Subtask(name: 'Check Vestiti'),
+        Subtask(name: 'Svuota briciole'),
+        Subtask(name: 'Pulizia banco'),
+        Subtask(name: 'Pulizia piano induzione'),
+        Subtask(name: 'Pulizia tavolo'),
+        Subtask(name: 'Piatti in lavastoviglie'),
+        Subtask(name: 'Panno nero per induzione'),
+        Subtask(name: 'Vitamine', user: 'Gabriele'),
+        Subtask(name: 'Stretching', user: 'Francesco'),
+      ],
+      frequency: ActivityFrequency.everyMeal,
+      additionalSubtasks: [
+        Subtask(name: 'Avvia Lavastoviglie'),
+        Subtask(name: 'Check vetro'),
+        Subtask(name: 'Check indifferenziato'),
+        Subtask(name: 'Check organico'),
+        Subtask(name: 'Pezza su bidoni'),
+        Subtask(name: 'Passata aspirapolvere'),
+        Subtask(name: 'Mettere pezze e tovaglie sporche in lavatrice'),
+        Subtask(name: 'Svuota lavastoviglie pulita'),
+        Subtask(name: 'Metti aspirapolvere in carica'),
+        Subtask(name: 'Riordina aspirapolvere carico'),
+        Subtask(name: 'Liberare pavimenti'),
+      ]),
+  'post_cena': Activity(
+      name: 'Pulizia post cena',
+      subtasks: [
+        Subtask(name: 'Check Vestiti'),
+        Subtask(name: 'Svuota briciole'),
+        Subtask(name: 'Pulizia banco'),
+        Subtask(name: 'Pulizia piano induzione'),
+        Subtask(name: 'Pulizia tavolo'),
+        Subtask(name: 'Piatti in lavastoviglie'),
+        Subtask(name: 'Panno nero per induzione'),
+        Subtask(name: 'Vitamine', user: 'Gabriele'),
+        Subtask(name: 'Stretching', user: 'Francesco'),
+      ],
+      frequency: ActivityFrequency.everyMeal,
+      additionalSubtasks: [
+        Subtask(name: 'Avvia Lavastoviglie'),
+        Subtask(name: 'Check indifferenziato'),
+        Subtask(name: 'Check organico'),
+        Subtask(name: 'Pezza su bidoni'),
+        Subtask(name: 'Passata aspirapolvere'),
+        Subtask(name: 'Mettere pezze e tovaglie sporche in lavatrice'),
+        Subtask(name: 'Svuota lavastoviglie pulita'),
+        Subtask(name: 'Metti aspirapolvere in carica'),
+        Subtask(name: 'Riordina aspirapolvere carico'),
+        Subtask(name: 'Liberare pavimenti'),
+      ]),
+  'bagno': Activity(
     name: 'Pulizia bagno',
     subtasks: [
       Subtask(name: 'Bidet'),
@@ -89,7 +65,7 @@ const List<Activity> activities = [
     ],
     frequency: ActivityFrequency.weekly,
   ),
-  Activity(
+  'cucina': Activity(
     name: 'Pulizia cucina profonda',
     subtasks: [
       Subtask(name: 'Pezza in forno'),
@@ -100,28 +76,28 @@ const List<Activity> activities = [
     ],
     frequency: ActivityFrequency.weekly,
   ),
-  Activity(
+  'carta': Activity(
     name: 'Svuotare carta',
-    subtasks: [
-      Subtask(name: 'Svuota carta'),
-    ],
+    subtasks: [Subtask(name: 'Svuota carta')],
     frequency: ActivityFrequency.weekly,
   ),
-  Activity(
+  'plastica': Activity(
     name: 'Svuotare plastica',
     subtasks: [
       Subtask(name: 'Svuota plastica'),
+      Subtask(name: 'Nuovo sacchetto'),
     ],
     frequency: ActivityFrequency.weekly,
   ),
-  Activity(
+  'organico': Activity(
     name: 'Svuotare organico',
     subtasks: [
       Subtask(name: 'Svuota organico'),
+      Subtask(name: 'Nuovo sacchetto'),
     ],
     frequency: ActivityFrequency.weekly,
   ),
-  Activity(
+  'scopa': Activity(
     name: 'Scopa',
     subtasks: [
       Subtask(name: 'Cucina pavimento'),
@@ -133,7 +109,7 @@ const List<Activity> activities = [
     ],
     frequency: ActivityFrequency.weekly,
   ),
-  Activity(
+  'mocio': Activity(
     name: 'Mocio',
     subtasks: [
       Subtask(name: 'Scopa Cucina pavimento'),
@@ -151,4 +127,4 @@ const List<Activity> activities = [
     ],
     frequency: ActivityFrequency.weekly,
   ),
-];
+};
