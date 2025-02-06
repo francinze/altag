@@ -1,4 +1,5 @@
 import 'package:altag/pages/housekeeping/activity.dart';
+import 'package:altag/pages/housekeeping/metrics.dart';
 import 'package:altag/pages/housekeeping/plan.dart';
 import 'package:altag/pages/housekeeping/utils.dart';
 import 'package:altag/pages/unauth.dart';
@@ -43,57 +44,71 @@ class HousekeepingHubPage extends StatelessWidget {
     final firestore = Provider.of<FirestoreService>(context);
     final currentUserName = authProvider.userName;
 
-    // If the user is not logged in, show a prompt.
-    if (currentUserName == null) {
-      return Scaffold(
-        appBar: AppBar(title: const Text("Housekeeping Hub")),
-        body: Center(
-          child: Column(
-            children: [
-              const Text("Please log in to view your schedule."),
-              TextButton(
-                child: const Text("Log in"),
-                onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const UnauthenticatedPage())),
-              )
-            ],
-          ),
-        ),
-      );
-    }
-
     // Calculate the document IDs for the current and next weeks.
     final currentMonday = getCurrentWeekMonday();
     final currentWeekDocId = getWeekDocId(currentMonday);
     final nextMonday = getNextWeekMonday();
     final nextWeekDocId = getWeekDocId(nextMonday);
+    // If the user is not logged in, show a prompt.
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Housekeeping Hub")),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildTaskList("Current Week Tasks",
-                firestore.getTasksForWeek(currentWeekDocId, currentUserName)),
-            const SizedBox(height: 32),
-            _buildTaskList("Next Week Tasks",
-                firestore.getTasksForWeek(nextWeekDocId, currentUserName)),
-          ],
-        ),
+      appBar: AppBar(
+        title: const Text("Housekeeping Hub"),
+        centerTitle: true,
+        actions: [
+          if (currentUserName != null)
+            IconButton(
+              icon: const Icon(Icons.bar_chart),
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const HouseKeepingMetricsPage())),
+            ),
+        ],
       ),
+      body: (currentUserName == null)
+          ? Center(
+              child: Column(
+                children: [
+                  const Text("Please log in to view your schedule."),
+                  TextButton(
+                    child: const Text("Log in"),
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const UnauthenticatedPage())),
+                  )
+                ],
+              ),
+            )
+          : SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildTaskList(
+                      "Current Week Tasks",
+                      firestore.getTasksForWeek(
+                          currentWeekDocId, currentUserName)),
+                  const SizedBox(height: 32),
+                  _buildTaskList(
+                      "Next Week Tasks",
+                      firestore.getTasksForWeek(
+                          nextWeekDocId, currentUserName)),
+                ],
+              ),
+            ),
       // Optional: FAB for planning next week's tasks.
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const PlanActivitiesPage())),
-        icon: const Icon(Icons.edit_calendar),
-        label: const Text("Plan Activities"),
-      ),
+      floatingActionButton: (currentUserName == null)
+          ? null
+          : FloatingActionButton.extended(
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PlanActivitiesPage())),
+              icon: const Icon(Icons.edit_calendar),
+              label: const Text("Plan Activities"),
+            ),
     );
   }
 }

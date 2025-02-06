@@ -21,10 +21,7 @@ class DefaultFirebaseOptions {
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for android - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return android;
       case TargetPlatform.iOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for ios - '
@@ -62,4 +59,14 @@ class DefaultFirebaseOptions {
     storageBucket: 'altaguardia-hub.firebasestorage.app',
     measurementId: 'G-L7LCXCK3SV',
   );
+
+  static const FirebaseOptions android = FirebaseOptions(
+    apiKey: 'AIzaSyCeWlb_op4umzEz5vGg17YeDwEQi2C0E6I',
+    appId: '1:610805260869:android:e1b57f97da5c34ba37792c',
+    messagingSenderId: '610805260869',
+    projectId: 'altaguardia-hub',
+    databaseURL: 'https://altaguardia-hub-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'altaguardia-hub.firebasestorage.app',
+  );
+
 }
