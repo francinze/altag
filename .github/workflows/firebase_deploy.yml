@@ -37,10 +37,13 @@ jobs:
       - name: Authenticate with Service Account
         run: |
           echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}' > $HOME/firebase-key.json
-          export GOOGLE_APPLICATION_CREDENTIALS="$HOME/firebase-key.json"
       
       - name: Initialize Firebase Project
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: $HOME/firebase-key.json
         run: firebase use altag
 
       - name: Deploy to Firebase Hosting
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: $HOME/firebase-key.json
         run: firebase deploy --only hosting

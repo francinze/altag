@@ -8,7 +8,7 @@ class HouseAuthProvider extends ChangeNotifier {
   String? _uid;
   String? _userName;
   late FirebaseAuth instance;
-  final Box _authBox = Hive.box('authBox'); // Use Hive for local storage
+  final Box<String> _authBox = Hive.box<String>('authBox');
 
   HouseAuthProvider([FirebaseAuth? auth]) {
     instance = auth ?? FirebaseAuth.instance;
