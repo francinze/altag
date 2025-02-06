@@ -104,18 +104,17 @@ class ActivityDetailsPageState extends State<ActivityDetailsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(widget.taskData['name']!.startsWith('Pulizia post')
-                      ? "Se stai mangiando per ultimo:"
+                      ? "Stai mangiando per ultimo?"
                       : ""),
-                  if (!additionalSubtasks!.every((sub) => sub['done'] == true))
-                    IconButton(
-                        onPressed: toggleAllAdditionalSubtasks,
-                        icon: Icon(
-                          Icons.block,
-                          color: additionalSubtasks!
-                                  .every((sub) => sub['done'] == true)
-                              ? Colors.grey
-                              : Colors.red,
-                        ))
+                  IconButton(
+                      onPressed: toggleAllAdditionalSubtasks,
+                      icon: Icon(
+                        Icons.block,
+                        color: additionalSubtasks!
+                                .every((sub) => sub['done'] == true)
+                            ? Colors.grey
+                            : Colors.red,
+                      ))
                 ],
               ),
               Expanded(
