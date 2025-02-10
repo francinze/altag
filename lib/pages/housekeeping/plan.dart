@@ -77,7 +77,7 @@ class PlanActivitiesPageState extends State<PlanActivitiesPage> {
         cenaActivity['day'] = day;
         cenaActivity['description'] =
             'Mansioni standard di pulizia post pasto.';
-        cenaActivity['timeslot'] = 'afternoon';
+        cenaActivity['timeslot'] = 'evening';
         cenaActivity['done'] = false;
         cenaActivity['createdAt'] = FieldValue.serverTimestamp();
         await fixedTasksRef.add(cenaActivity);

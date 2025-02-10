@@ -26,7 +26,7 @@ import 'pages/whiteboard.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  await Hive.openBox('authBox');
+  await Hive.openBox<String>('authBox');
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(

@@ -15,6 +15,7 @@ const Map<String, Activity> activities = {
         Subtask(name: 'Panno nero per induzione'),
         Subtask(name: 'Vitamine', user: 'Gabriele'),
         Subtask(name: 'Stretching', user: 'Francesco'),
+        Subtask(name: 'Lava denti', user: 'Francesco')
       ],
       frequency: ActivityFrequency.everyMeal,
       additionalSubtasks: [
@@ -43,6 +44,7 @@ const Map<String, Activity> activities = {
         Subtask(name: 'Panno nero per induzione'),
         Subtask(name: 'Vitamine', user: 'Gabriele'),
         Subtask(name: 'Stretching', user: 'Francesco'),
+        Subtask(name: 'Lava denti', user: 'Francesco')
       ],
       frequency: ActivityFrequency.everyMeal,
       additionalSubtasks: [

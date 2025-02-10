@@ -40,6 +40,8 @@ class ActivityDetailsPageState extends State<ActivityDetailsPage> {
                   sub['user'] == 'Everyone' ||
                   sub['user'] == null)
               .toList();
+    } else {
+      additionalSubtasks = null;
     }
   }
 
