@@ -1,7 +1,7 @@
 name: altag
 description: "A new Flutter project."
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.0.1
 
 environment:
   sdk: ^3.5.4
@@ -20,6 +20,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   hive_flutter: ^1.1.0
+  home_widget: ^0.7.0+1
   intl: ^0.19.0
   mockito: ^5.4.4
   provider: ^6.1.2

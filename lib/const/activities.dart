@@ -5,7 +5,7 @@ const Map<String, Activity> activities = {
   'post_pranzo': Activity(
       name: 'Pulizia post pranzo',
       subtasks: [
-        Subtask(name: 'Check Vestiti'),
+        Subtask(name: 'I MIEI VESTITI SONO ASCIUTTI?'),
         Subtask(name: 'Svuota briciole'),
         Subtask(name: 'Pulizia banco'),
         Subtask(name: 'Pulizia piano induzione'),
@@ -19,22 +19,21 @@ const Map<String, Activity> activities = {
       ],
       frequency: ActivityFrequency.everyMeal,
       additionalSubtasks: [
-        Subtask(name: 'Avvia Lavastoviglie'),
+        Subtask(name: 'Avvia Lavastoviglie / Svuota lavastoviglie pulita'),
         Subtask(name: 'Check vetro'),
         Subtask(name: 'Check indifferenziato'),
         Subtask(name: 'Check organico'),
         Subtask(name: 'Pezza su bidoni'),
-        Subtask(name: 'Passata aspirapolvere'),
+        Subtask(
+            name:
+                'Passata aspirapolvere + Metti in Carica / Riordina se carico'),
         Subtask(name: 'Mettere pezze e tovaglie sporche in lavatrice'),
-        Subtask(name: 'Svuota lavastoviglie pulita'),
-        Subtask(name: 'Metti aspirapolvere in carica'),
-        Subtask(name: 'Riordina aspirapolvere carico'),
         Subtask(name: 'Liberare pavimenti'),
       ]),
   'post_cena': Activity(
       name: 'Pulizia post cena',
       subtasks: [
-        Subtask(name: 'Check Vestiti'),
+        Subtask(name: 'I MIEI VESTITI SONO ASCIUTTI?'),
         Subtask(name: 'Svuota briciole'),
         Subtask(name: 'Pulizia banco'),
         Subtask(name: 'Pulizia piano induzione'),
@@ -48,15 +47,15 @@ const Map<String, Activity> activities = {
       ],
       frequency: ActivityFrequency.everyMeal,
       additionalSubtasks: [
-        Subtask(name: 'Avvia Lavastoviglie'),
+        Subtask(name: 'Avvia Lavastoviglie / Svuota lavastoviglie pulita'),
+        Subtask(name: 'Check vetro'),
         Subtask(name: 'Check indifferenziato'),
         Subtask(name: 'Check organico'),
         Subtask(name: 'Pezza su bidoni'),
-        Subtask(name: 'Passata aspirapolvere'),
+        Subtask(
+            name:
+                'Passata aspirapolvere + Metti in Carica / Riordina se carico'),
         Subtask(name: 'Mettere pezze e tovaglie sporche in lavatrice'),
-        Subtask(name: 'Svuota lavastoviglie pulita'),
-        Subtask(name: 'Metti aspirapolvere in carica'),
-        Subtask(name: 'Riordina aspirapolvere carico'),
         Subtask(name: 'Liberare pavimenti'),
       ]),
   'bagno': Activity(

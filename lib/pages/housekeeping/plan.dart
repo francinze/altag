@@ -53,7 +53,7 @@ class PlanActivitiesPageState extends State<PlanActivitiesPage> {
         pranzoActivity['description'] =
             'Mansioni standard di pulizia post pasto.';
         pranzoActivity['timeslot'] = 'afternoon';
-        pranzoActivity['done'] = false;
+        pranzoActivity['status'] = 'to-do';
         pranzoActivity['createdAt'] = FieldValue.serverTimestamp();
         await fixedTasksRef.add(pranzoActivity);
         final cenaSubtasks = activities['post_cena']!
@@ -78,7 +78,7 @@ class PlanActivitiesPageState extends State<PlanActivitiesPage> {
         cenaActivity['description'] =
             'Mansioni standard di pulizia post pasto.';
         cenaActivity['timeslot'] = 'evening';
-        cenaActivity['done'] = false;
+        cenaActivity['status'] = 'to-do';
         cenaActivity['createdAt'] = FieldValue.serverTimestamp();
         await fixedTasksRef.add(cenaActivity);
       }
@@ -128,7 +128,7 @@ class PlanActivitiesPageState extends State<PlanActivitiesPage> {
       'day': _selectedDay,
       'timeslot': _selectedTimeSlot,
       'assignedTo': _selectedUser,
-      'done': false,
+      'status': 'to-do',
       'subtasks': _selectedActivity!.subtasks
           .map((subtask) => {'name': subtask.name, 'done': false})
           .toList(),

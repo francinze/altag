@@ -1,4 +1,3 @@
-import 'package:altag/pages/housekeeping/activity.dart';
 import 'package:altag/pages/housekeeping/metrics.dart';
 import 'package:altag/pages/housekeeping/plan.dart';
 import 'package:altag/pages/housekeeping/utils.dart';
@@ -39,134 +38,145 @@ class HousekeepingHubPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get the authenticated user from the provider.
     final authProvider = Provider.of<HouseAuthProvider>(context);
     final firestore = Provider.of<FirestoreService>(context);
     final currentUserName = authProvider.userName;
 
-    // Calculate the document IDs for the current and next weeks.
     final currentMonday = getCurrentWeekMonday();
     final currentWeekDocId = getWeekDocId(currentMonday);
     final nextMonday = getNextWeekMonday();
     final nextWeekDocId = getWeekDocId(nextMonday);
-    // If the user is not logged in, show a prompt.
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Housekeeping Hub"),
-        centerTitle: true,
-        actions: [
-          if (currentUserName != null)
-            IconButton(
-              icon: const Icon(Icons.bar_chart),
-              onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const HouseKeepingMetricsPage())),
-            ),
-        ],
-      ),
-      body: (currentUserName == null)
-          ? Center(
-              child: Column(
-                children: [
-                  const Text("Please log in to view your schedule."),
-                  TextButton(
-                    child: const Text("Log in"),
-                    onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const UnauthenticatedPage())),
-                  )
-                ],
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Housekeeping Hub"),
+          centerTitle: true,
+          actions: [
+            if (currentUserName != null)
+              IconButton(
+                icon: const Icon(Icons.bar_chart),
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HouseKeepingMetricsPage())),
               ),
-            )
-          : SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+          ],
+          bottom: const TabBar(
+            tabs: [
+              Tab(text: "This Week"),
+              Tab(text: "Next Week"),
+            ],
+          ),
+        ),
+        body: (currentUserName == null)
+            ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Please log in to view your schedule."),
+                    TextButton(
+                      child: const Text("Log in"),
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const UnauthenticatedPage())),
+                    )
+                  ],
+                ),
+              )
+            : TabBarView(
                 children: [
                   _buildTaskList(
                       "Current Week Tasks",
                       firestore.getTasksForWeek(
                           currentWeekDocId, currentUserName)),
-                  const SizedBox(height: 32),
                   _buildTaskList(
                       "Next Week Tasks",
                       firestore.getTasksForWeek(
                           nextWeekDocId, currentUserName)),
                 ],
               ),
-            ),
-      // Optional: FAB for planning next week's tasks.
-      floatingActionButton: (currentUserName == null)
-          ? null
-          : FloatingActionButton.extended(
-              onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const PlanActivitiesPage())),
-              icon: const Icon(Icons.edit_calendar),
-              label: const Text("Plan Activities"),
-            ),
+        floatingActionButton: (currentUserName == null)
+            ? null
+            : FloatingActionButton.extended(
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const PlanActivitiesPage())),
+                icon: const Icon(Icons.edit_calendar),
+                label: const Text("Plan Activities"),
+              ),
+      ),
     );
   }
 }
 
-/// Builds a widget that displays a list of tasks, with a title and a stream of
-/// tasks. If the stream is empty, displays a message "No tasks.".
-///
-/// The tasks are displayed as a list of cards, with the title of the task as the
-/// title of the card, and the day and time slot as the subtitle. If the task is
-/// done, displays a green checkmark; otherwise, displays a radio button.
-///
-/// When a task is tapped, navigates to the [ActivityDetailsPage] with the
-/// task's reference and data.
-///
-/// The [title] parameter is the title of the list of tasks, displayed as a
-/// headline.
-///
-/// The [taskStream] parameter is the stream of tasks.
 Widget _buildTaskList(
         String title, Stream<List<DocumentSnapshot>> taskStream) =>
     Center(
-      child: Column(
-        children: [
-          Text(title,
-              style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-          StreamBuilder<List<DocumentSnapshot>>(
-            stream: taskStream,
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) return const CircularProgressIndicator();
-              final tasks = snapshot.data!;
-              if (tasks.isEmpty) {
-                return const Padding(
-                    padding: EdgeInsets.all(8.0), child: Text("No tasks."));
-              }
-              tasks.removeWhere((task) =>
-                  days.indexOf(task['day']) < DateTime.now().weekday - 1 &&
-                  title == "Current Week Tasks");
-              final sortedTasks = sortActivities(tasks);
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(height: 8),
-                  ListView.separated(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: sortedTasks.length,
-                    separatorBuilder: (_, __) => const SizedBox(height: 8),
-                    itemBuilder: (context, index) => ActivityTile(
-                      taskDoc: sortedTasks[index],
-                      taskData:
-                          sortedTasks[index].data() as Map<String, dynamic>,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Text(title,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+            StreamBuilder<List<DocumentSnapshot>>(
+              stream: taskStream,
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) return const CircularProgressIndicator();
+                final tasks = snapshot.data!;
+                final pastTasks = tasks
+                    .where((task) =>
+                        days.indexOf(task['day']) < DateTime.now().weekday - 1)
+                    .toList();
+                final currentTasks = tasks
+                    .where((task) =>
+                        days.indexOf(task['day']) >= DateTime.now().weekday - 1)
+                    .toList();
+
+                if (tasks.isEmpty) {
+                  return const Padding(
+                      padding: EdgeInsets.all(8.0), child: Text("No tasks."));
+                }
+
+                final sortedCurrentTasks = sortActivities(currentTasks);
+                final sortedPastTasks = sortActivities(pastTasks);
+
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 8),
+                    Column(
+                      children: sortedCurrentTasks
+                          .map((d) => ActivityTile(
+                                taskDoc: d,
+                                taskData: d.data() as Map<String, dynamic>,
+                              ))
+                          .toList(),
                     ),
-                  ),
-                ],
-              );
-            },
-          ),
-        ],
+                    if (sortedPastTasks.isNotEmpty) ...[
+                      const SizedBox(height: 8),
+                      const Text("Past Tasks",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16)),
+                      Column(
+                        children: sortedPastTasks
+                            .map((d) => ActivityTile(
+                                  taskDoc: d,
+                                  taskData: d.data() as Map<String, dynamic>,
+                                ))
+                            .toList(),
+                      ),
+                      const SizedBox(height: 32),
+                    ],
+                  ],
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );

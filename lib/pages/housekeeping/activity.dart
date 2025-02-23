@@ -87,18 +87,16 @@ class ActivityDetailsPageState extends State<ActivityDetailsPage> {
           children: [
             Text(widget.taskData['description'] ?? ""),
             const SizedBox(height: 16),
-            Expanded(
-              child: ListView.builder(
-                itemCount: subtasks.length,
-                itemBuilder: (context, index) {
-                  final subtask = subtasks[index];
-                  return CheckboxListTile(
-                    title: Text(subtask['name']),
-                    value: subtask['done'],
-                    onChanged: (bool? _) => toggleSubtask(index),
-                  );
-                },
-              ),
+            Column(
+              children: subtasks
+                  .map((subtask) => CheckboxListTile(
+                        title: Text(subtask['name']),
+                        value: subtask['done'],
+                        onChanged: (bool? _) => toggleAdditionalSubtask(
+                          subtasks.indexOf(subtask),
+                        ),
+                      ))
+                  .toList(),
             ),
             if (additionalSubtasks != null) ...[
               const SizedBox(height: 16),
@@ -119,24 +117,22 @@ class ActivityDetailsPageState extends State<ActivityDetailsPage> {
                       ))
                 ],
               ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: additionalSubtasks!.length,
-                  itemBuilder: (context, index) {
-                    final subtask = additionalSubtasks![index];
-                    return CheckboxListTile(
-                      title: Text(subtask['name']),
-                      value: subtask['done'],
-                      onChanged: (bool? _) => toggleAdditionalSubtask(index),
-                    );
-                  },
-                ),
+              Column(
+                children: additionalSubtasks!
+                    .map((subtask) => CheckboxListTile(
+                          title: Text(subtask['name']),
+                          value: subtask['done'],
+                          onChanged: (bool? _) => toggleAdditionalSubtask(
+                            additionalSubtasks!.indexOf(subtask),
+                          ),
+                        ))
+                    .toList(),
               ),
             ],
             ElevatedButton(
               onPressed: allSubtasksDone()
                   ? () async {
-                      await widget.taskRef.update({'done': true});
+                      await widget.taskRef.update({'status': 'done'});
                       if (context.mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(

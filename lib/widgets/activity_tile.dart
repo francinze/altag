@@ -12,7 +12,7 @@ class ActivityTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: taskData['done'] == true
+      color: taskData['status'] != 'to-do'
           ? Colors.green[50]
           : Theme.of(context).colorScheme.surface,
       elevation: 2,
@@ -20,7 +20,7 @@ class ActivityTile extends StatelessWidget {
       child: ListTile(
         leading: IconButton(
             onPressed: () async {
-              if (taskData['done'] == true) return;
+              if (taskData['status'] != 'to-do') return;
               final confirm = await showDialog<bool>(
                   context: context,
                   builder: (context) => AlertDialog(
@@ -38,9 +38,9 @@ class ActivityTile extends StatelessWidget {
                             ),
                           ]));
               if (confirm != true) return;
-              await taskDoc.reference.update({'done': true});
+              await taskDoc.reference.update({'status': 'skipped'});
               if (context.mounted) {
-                taskData['done'] = true;
+                taskData['status'] = 'skipped';
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Activity skipped!')),
                 );
@@ -48,12 +48,12 @@ class ActivityTile extends StatelessWidget {
             },
             icon: Icon(
               Icons.block,
-              color: taskData['done'] == true ? Colors.grey : Colors.red,
+              color: taskData['status'] != 'to-do' ? Colors.grey : Colors.red,
             )),
         contentPadding: const EdgeInsets.all(16),
         title: Text(taskData['name'] ?? ""),
         subtitle: Text("${taskData['day']} • ${taskData['timeslot']}"),
-        trailing: taskData['done'] == true
+        trailing: taskData['status'] == 'to-do'
             ? const Icon(Icons.check_circle, color: Colors.green)
             : Icon(Icons.radio_button_unchecked,
                 color: Theme.of(context).colorScheme.primary),
