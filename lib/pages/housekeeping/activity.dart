@@ -19,6 +19,7 @@ class ActivityDetailsPage extends StatefulWidget {
 class ActivityDetailsPageState extends State<ActivityDetailsPage> {
   late List<dynamic> subtasks;
   late List<dynamic>? additionalSubtasks;
+  bool doingAdditionals = false;
   late String username;
 
   @override
@@ -40,6 +41,7 @@ class ActivityDetailsPageState extends State<ActivityDetailsPage> {
                   sub['user'] == 'Everyone' ||
                   sub['user'] == null)
               .toList();
+      doingAdditionals = additionalSubtasks!.any((sub) => sub['done']);
     } else {
       additionalSubtasks = null;
     }
@@ -60,14 +62,8 @@ class ActivityDetailsPageState extends State<ActivityDetailsPage> {
   }
 
   /// Toggle a subtask's done state and update Firestore.
-  Future<void> toggleAllAdditionalSubtasks() async {
-    setState(() {
-      for (var subtask in additionalSubtasks!) {
-        subtask['done'] = !subtask['done'];
-      }
-    });
-    await widget.taskRef.update({'additionalSubtasks': additionalSubtasks});
-  }
+  Future<void> toggleAllAdditionalSubtasks() async =>
+      setState(() => doingAdditionals = !doingAdditionals);
 
   /// Check if all subtasks are completed.
   bool allSubtasksDone() {
@@ -83,68 +79,51 @@ class ActivityDetailsPageState extends State<ActivityDetailsPage> {
           AppBar(title: Text(widget.taskData['name'] ?? "Activity Details")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text(widget.taskData['description'] ?? ""),
-            const SizedBox(height: 16),
-            Column(
-              children: subtasks
-                  .map((subtask) => CheckboxListTile(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(widget.taskData['description'] ?? ""),
+              const SizedBox(height: 16),
+              ...subtasks.map((subtask) => CheckboxListTile(
+                    title: Text(subtask['name']),
+                    value: subtask['done'],
+                    onChanged: (bool? _) =>
+                        toggleSubtask(subtasks.indexOf(subtask)),
+                  )),
+              if (additionalSubtasks != null) ...[
+                const SizedBox(height: 16),
+                CheckboxListTile(
+                  value: doingAdditionals,
+                  onChanged: (_) => toggleAllAdditionalSubtasks(),
+                  title: Text(
+                      widget.taskData['name']!.startsWith('Pulizia post')
+                          ? "Stai mangiando per ultimo?"
+                          : ""),
+                ),
+                if (doingAdditionals ||
+                    additionalSubtasks!.any((sub) => sub['done']))
+                  ...additionalSubtasks!.map((subtask) => CheckboxListTile(
                         title: Text(subtask['name']),
                         value: subtask['done'],
                         onChanged: (bool? _) => toggleAdditionalSubtask(
-                          subtasks.indexOf(subtask),
+                          additionalSubtasks!.indexOf(subtask),
                         ),
-                      ))
-                  .toList(),
-            ),
-            if (additionalSubtasks != null) ...[
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(widget.taskData['name']!.startsWith('Pulizia post')
-                      ? "Stai mangiando per ultimo?"
-                      : ""),
-                  IconButton(
-                      onPressed: toggleAllAdditionalSubtasks,
-                      icon: Icon(
-                        Icons.block,
-                        color: additionalSubtasks!
-                                .every((sub) => sub['done'] == true)
-                            ? Colors.grey
-                            : Colors.red,
-                      ))
-                ],
-              ),
-              Column(
-                children: additionalSubtasks!
-                    .map((subtask) => CheckboxListTile(
-                          title: Text(subtask['name']),
-                          value: subtask['done'],
-                          onChanged: (bool? _) => toggleAdditionalSubtask(
-                            additionalSubtasks!.indexOf(subtask),
-                          ),
-                        ))
-                    .toList(),
+                      )),
+              ],
+              ElevatedButton(
+                onPressed: () async {
+                  await widget.taskRef.update({'status': 'done'});
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Activity marked as done!')),
+                    );
+                    Navigator.pop(context);
+                  }
+                },
+                child: const Text("Mark Activity as Done"),
               ),
             ],
-            ElevatedButton(
-              onPressed: allSubtasksDone()
-                  ? () async {
-                      await widget.taskRef.update({'status': 'done'});
-                      if (context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text('Activity marked as done!')),
-                        );
-                        Navigator.pop(context);
-                      }
-                    }
-                  : null,
-              child: const Text("Mark Activity as Done"),
-            ),
-          ],
+          ),
         ),
       ),
     );

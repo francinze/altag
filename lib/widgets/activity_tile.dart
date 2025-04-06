@@ -53,7 +53,7 @@ class ActivityTile extends StatelessWidget {
         contentPadding: const EdgeInsets.all(16),
         title: Text(taskData['name'] ?? ""),
         subtitle: Text("${taskData['day']} • ${taskData['timeslot']}"),
-        trailing: taskData['status'] == 'to-do'
+        trailing: taskData['status'] != 'to-do'
             ? const Icon(Icons.check_circle, color: Colors.green)
             : Icon(Icons.radio_button_unchecked,
                 color: Theme.of(context).colorScheme.primary),
